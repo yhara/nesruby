@@ -1,0 +1,4 @@
+/bin/*.nes
+/bin/*.nes.map
+/obj/*.o
+/obj/*.o.dep
