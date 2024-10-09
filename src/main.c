@@ -1,5 +1,6 @@
 #include <conio.h>
 #include <string.h>
+#include "mrb_data.h"
 // cc65 memo
 // - no "inline" keyword
 // limitation
@@ -148,10 +149,6 @@ static const int SIZE_RITE_SECTION_HEADER = 12;
 static const char IREP[4] = "IREP";
 
 const char message[] = "Hello cc65!";
-
-const uint8_t mrb_data[]={
-82,73,84,69,48,51,48,48,0,0,0,66,77,65,84,90,48,48,48,48,73,82,69,80,0,0,0,38,48,51,48,48,0,0,0,26,0,1,0,4,0,0,0,0,0,0,0,6,3,1,30,56,1,105,0,0,0,0,69,78,68,0,0,0,0,8
-};
 
 // vm
 static const uint8_t MAX_REGS_SIZE = 16;
