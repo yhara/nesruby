@@ -189,6 +189,46 @@ static void op_loadi(mrb_vm *vm)
   FETCH_BB();
   mrb_regs[a] = b;
 }
+static void op_loadi_0(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 0;
+}
+static void op_loadi_1(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 1;
+}
+static void op_loadi_2(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 2;
+}
+static void op_loadi_3(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 3;
+}
+static void op_loadi_4(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 4;
+}
+static void op_loadi_5(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 5;
+}
+static void op_loadi_6(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 6;
+}
+static void op_loadi_7(mrb_vm *vm)
+{
+  FETCH_B();
+  mrb_regs[a] = 7;
+}
 static void op_return(mrb_vm *vm)
 {
   FETCH_B();
@@ -222,8 +262,17 @@ void run_ruby()
   vm.inst = p;
   while (1) {
     op = *vm.inst++;
+    //cprintf("[%d]", op);
     switch (op) {
       case OP_LOADI: op_loadi(&vm); break;
+      case OP_LOADI_0: op_loadi_0(&vm); break;
+      case OP_LOADI_1: op_loadi_1(&vm); break;
+      case OP_LOADI_2: op_loadi_2(&vm); break;
+      case OP_LOADI_3: op_loadi_3(&vm); break;
+      case OP_LOADI_4: op_loadi_4(&vm); break;
+      case OP_LOADI_5: op_loadi_5(&vm); break;
+      case OP_LOADI_6: op_loadi_6(&vm); break;
+      case OP_LOADI_7: op_loadi_7(&vm); break;
       case OP_RETURN: op_return(&vm); break;
       case OP_STOP: op_stop(&vm); break;
       default:
