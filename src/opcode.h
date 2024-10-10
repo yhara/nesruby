@@ -1,3 +1,19 @@
+#ifndef MRBC_SRC_OPCODE_H_
+#define MRBC_SRC_OPCODE_H_
+
+/*
+ operand types:
+   Z: no operand
+   B: 8bit	   (a)
+   BB: 8+8bit	   (a,b)
+   BBB: 8+8+8bit   (a,b,c)
+   BS: 8+16bit	   (a,b)
+   BSS: 8+16+16bit (a,b,c)
+   S: 16bit	   (a)
+   W: 24bit	   (a)
+*/
+
+#define FETCH_Z() (void)0
 #define FETCH_B() \
   unsigned int a; \
   a = *vm->inst++; \
@@ -7,6 +23,31 @@
   a = *vm->inst++; \
   b = *vm->inst++; \
   (void)a, (void)b
+#define FETCH_BBB() \
+  unsigned int a, b, c; \
+  a = *vm->inst++; \
+  b = *vm->inst++; \
+  c = *vm->inst++; \
+  (void)a, (void)b, (void)c
+#define FETCH_BS() \
+  unsigned int a, b; \
+  a = *vm->inst++; \
+  b = *vm->inst++; b = b << 8 | *vm->inst++; \
+  (void)a, (void)b
+#define FETCH_BSS() \
+  unsigned int a, b, c; \
+  a = *vm->inst++; \
+  b = *vm->inst++; b = b << 8 | *vm->inst++; \
+  c = *vm->inst++; c = c << 8 | *vm->inst++; \
+  (void)a, (void)b, (void)c
+#define FETCH_S() \
+  unsigned int a; \
+  a = *vm->inst++; a = a << 8 | *vm->inst++; \
+  (void)a
+#define FETCH_W() \
+  uint32_t a; \
+  a = *vm->inst++; a = a << 8 | *vm->inst++; a = a << 8 | *vm->inst++; \
+  (void)a
 
 enum OPCODE {
 /*-----------------------------------------------------------------------
@@ -119,3 +160,5 @@ enum OPCODE {
   OP_EXT3       = 0x68, //!< Z    make 1st and 2nd operands 16bit
   OP_STOP       = 0x69, //!< Z    stop VM
 };
+
+#endif

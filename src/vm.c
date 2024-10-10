@@ -42,6 +42,28 @@ static void op_loadf( mrbc_vm *vm, mrbc_value *regs )
   mrbc_decref(&regs[a]);
   mrbc_set_false(&regs[a]);
 }
+
+static void op_jmp( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_S();
+
+  vm->inst += (int16_t)a;
+}
+
+static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_BBB();
+
+  mrbc_decref( &regs[a] );
+  //TODO
+  //regs[a] = *mrbc_get_self( vm, regs );
+  mrbc_incref( &regs[a] );
+
+  //TODO
+  //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
+  cprintf("hello");
+}
+
 static void op_return(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
@@ -73,6 +95,11 @@ void mrbc_vm_run(struct VM *vm, mrbc_value *regs)
       case OP_LOADNIL:    op_loadnil    (vm, regs); break;
       case OP_LOADT:      op_loadt      (vm, regs); break;
       case OP_LOADF:      op_loadf      (vm, regs); break;
+
+      case OP_JMP:        op_jmp        (vm, regs); break;
+
+      case OP_SSEND:      op_ssend      (vm, regs); break;
+
       case OP_RETURN: op_return(vm, regs); break;
       case OP_STOP: op_stop(vm, regs); break;
       default:

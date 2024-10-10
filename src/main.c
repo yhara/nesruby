@@ -42,14 +42,14 @@ int main(void)
     unsigned int frame = 0;
 
     clrscr();
-    //gotoxy((32-strlen(message))/2, 30/2);
-    gotoxy(0, 15);
+    gotoxy(0, 0);
     run_ruby();
-    //cprintf("value: %03d", mrb_data[0]);
-    while(1) {
-        gotoxy(0, 0);
-        cprintf("%8d", frame++);
-    }
+
+    //while(1) {
+        //gotoxy(0, 0);
+        //cprintf("%8d", frame++);
+        //break;
+    //}
 
     return 0;
 }

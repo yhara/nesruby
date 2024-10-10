@@ -37,5 +37,9 @@ static void mrbc_decref(mrbc_value *v)
 {
   // todo
 }
+static void mrbc_incref(mrbc_value *v)
+{
+  // todo
+}
 
 #endif
