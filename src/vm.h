@@ -6,9 +6,9 @@
 
 typedef struct VM {
   uint8_t *inst;
-} mrb_vm;
+} mrbc_vm;
 
-void mrb_vm_run(mrb_vm *vm, mrb_value *regs);
+void mrbc_vm_run(mrbc_vm *vm, mrbc_value *regs);
 
 #endif
 

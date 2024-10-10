@@ -4,63 +4,63 @@
 #include "value.h"
 #include "vm.h"
 
-static void op_loadi(mrb_vm *vm, mrb_value *regs)
+static void op_loadi(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_BB();
   regs[a] = b;
 }
-static void op_loadi_0(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_0(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 0;
 }
-static void op_loadi_1(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_1(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 1;
 }
-static void op_loadi_2(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_2(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 2;
 }
-static void op_loadi_3(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_3(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 3;
 }
-static void op_loadi_4(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_4(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 4;
 }
-static void op_loadi_5(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_5(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 5;
 }
-static void op_loadi_6(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_6(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 6;
 }
-static void op_loadi_7(mrb_vm *vm, mrb_value *regs)
+static void op_loadi_7(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   regs[a] = 7;
 }
-static void op_return(mrb_vm *vm, mrb_value *regs)
+static void op_return(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
   cprintf("answer is %d", regs[a]);
 }
 
-static void op_stop(mrb_vm *vm, mrb_value *regs)
+static void op_stop(mrbc_vm *vm, mrbc_value *regs)
 {
   //cprintf("stop");
 }
 
-void mrb_vm_run(struct VM *vm, mrb_value *regs)
+void mrbc_vm_run(struct VM *vm, mrbc_value *regs)
 {
   uint8_t op;
   while (1) {

@@ -3,6 +3,6 @@
 
 #include "shims.h"
 
-typedef uint8_t mrb_value;
+typedef uint8_t mrbc_value;
 
 #endif

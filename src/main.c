@@ -24,8 +24,7 @@ static uint16_t bin_to_uint16( const void *s )
 //  return x;
 //}
 
-static mrb_vm vm;
-
+static mrbc_vm vm;
 
 void run_ruby();
 static const int SIZE_RITE_BINARY_HEADER = 20;
@@ -36,7 +35,7 @@ const char message[] = "Hello cc65!";
 
 // vm
 static const uint8_t MAX_REGS_SIZE = 16;
-static mrb_value mrb_regs[16];
+static mrbc_value mrbc_regs[16];
 
 int main(void)
 {
@@ -75,5 +74,5 @@ void run_ruby()
   p += 2; ilen = bin_to_uint16(p); p += 2;
   // Load an ISEQ
   vm.inst = p;
-  mrb_vm_run(&vm, mrb_regs);
+  mrbc_vm_run(&vm, mrbc_regs);
 }
