@@ -21,6 +21,27 @@ static void op_loadi_n(mrbc_vm *vm, mrbc_value *regs)
   mrbc_decref(&regs[a]);
   mrbc_set_integer(&regs[a], n);
 }
+static void op_loadnil( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_B();
+
+  mrbc_decref(&regs[a]);
+  mrbc_set_nil(&regs[a]);
+}
+static void op_loadt( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_B();
+
+  mrbc_decref(&regs[a]);
+  mrbc_set_true(&regs[a]);
+}
+static void op_loadf( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_B();
+
+  mrbc_decref(&regs[a]);
+  mrbc_set_false(&regs[a]);
+}
 static void op_return(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
@@ -49,6 +70,9 @@ void mrbc_vm_run(struct VM *vm, mrbc_value *regs)
       case OP_LOADI_5:    // fall through
       case OP_LOADI_6:    // fall through
       case OP_LOADI_7: op_loadi_n(vm, regs); break;
+      case OP_LOADNIL:    op_loadnil    (vm, regs); break;
+      case OP_LOADT:      op_loadt      (vm, regs); break;
+      case OP_LOADF:      op_loadf      (vm, regs); break;
       case OP_RETURN: op_return(vm, regs); break;
       case OP_STOP: op_stop(vm, regs); break;
       default:
