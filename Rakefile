@@ -6,7 +6,7 @@ file "src/mrb_data.h" => ["arraynize.rb", "a.mrb"] do
   sh "ruby arraynize.rb a.mrb > src/mrb_data.h"
 end
 
-file "bin/nesruby.nes" => ["src/mrb_data.h", "src/main.c"] do
+file "bin/nesruby.nes" => Dir["src/*"] do
   sh "make"
 end
 
