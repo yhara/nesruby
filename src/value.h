@@ -5,6 +5,7 @@
 
 typedef int16_t mrbc_int_t;
 typedef uint16_t mrbc_uint_t;
+typedef int16_t mrbc_sym;	//!< mruby/c symbol ID
 
 typedef enum {
   MRBC_TT_EMPTY     = 0,
@@ -36,10 +37,12 @@ typedef struct RObject mrbc_value;
 static void mrbc_decref(mrbc_value *v)
 {
   // todo
+  (void)v; // Surpress "never used" warning
 }
 static void mrbc_incref(mrbc_value *v)
 {
   // todo
+  (void)v; // Surpress "never used" warning
 }
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef MRBC_SRC_SHIMS_H_
 #define MRBC_SRC_SHIMS_H_
 
+#define NULL 0
+
 typedef char int8_t;
 typedef unsigned char uint8_t;
 typedef int int16_t;
