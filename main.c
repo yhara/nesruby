@@ -1,10 +1,11 @@
 #include "neslib.h"
+#include "src/debug.h"
+#include "src/load.h"
 #include "src/mrb_data.h"
 #include "src/opcode.h"
 #include "src/shims.h"
 #include "src/value.h"
 #include "src/vm.h"
-#include "src/debug.h"
 
 //palette for balls, there are four sets for different ball colors
 const unsigned char palSprites[16]={
@@ -15,33 +16,12 @@ const unsigned char palSprites[16]={
 };
 
 static mrbc_vm vm;
-static const uint8_t MAX_REGS_SIZE = 16;
 static mrbc_value mrbc_regs[16];
-
-static const int SIZE_RITE_BINARY_HEADER = 20;
-static const int SIZE_RITE_SECTION_HEADER = 12;
-static const char IREP[4] = "IREP";
 void run_ruby()
 {
   uint8_t *p = (uint8_t *)mrb_data;
-  uint16_t ilen;
-  uint16_t clen;
-  // Load .mrb
-  p += SIZE_RITE_BINARY_HEADER;
-  // Load IREP section
-  p += SIZE_RITE_SECTION_HEADER;
-  // Load an IREP
-  p += 4; // skip record size
-  p += 2; // nlocals
-  p += 2; // nregs
-  p += 2; // rlen
-  clen = bin_to_uint16(p); p += 2;
-  p += 2; ilen = bin_to_uint16(p); p += 2;
-  // Load an ISEQ
-  vm.inst = p;
-
   vm.cur_regs = mrbc_regs;
-  mrbc_vm_run(&vm);
+  mrbc_load_mrb(&vm, mrb_data);
 }
 
 const static char SPR_ARROW = 0;
@@ -66,9 +46,9 @@ void main(void)
   //there is a way to update small number of nametable tiles while rendering
   //is enabled, using set_vram_update and an update list
 
-  //run_ruby();
+  run_ruby();
 
-  put_str(NTADR_A(2,2),"HELLO, WORLD,");
+  //put_str(NTADR_A(2,2),"HELLO, WORLD,");
 
   ppu_on_all();//enable rendering
 
