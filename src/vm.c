@@ -1,8 +1,7 @@
-#include <conio.h>
-#include <string.h>
 #include "opcode.h"
 #include "value.h"
 #include "vm.h"
+#include "debug.h"
 
 static void op_loadi(mrbc_vm *vm, mrbc_value *regs)
 {
@@ -72,20 +71,20 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
   //TODO
   sym = mrbc_irep_symbol_id(vm->cur_irep, b);
   //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
-  cprintf("hello");
+  //cprintf("hello");
 }
 
 static void op_return(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
-  cprintf("answer is %d", regs[a].i);
+  //put_digit(NTADR_A(0,0), regs[a].i);
 }
 
 static void op_stop(mrbc_vm *vm, mrbc_value *regs)
 {
   (void)vm; // Surpress "never used" warning
   (void)regs; // Surpress "never used" warning
-  //cprintf("stop");
+  //put_str(NTADR_A(0,0),"STOP");
 }
 
 void mrbc_vm_run(struct VM *vm)
@@ -96,7 +95,7 @@ void mrbc_vm_run(struct VM *vm)
     mrbc_value *regs = vm->cur_regs;
     op = *vm->inst++;
 
-    //cprintf("[%d]", op);
+    //put_digit(NTADR_A(0,0),op);
     //for(i=0;i<10000;i++);
     switch (op) {
       case OP_LOADI: op_loadi(vm, regs); break;
@@ -123,7 +122,8 @@ void mrbc_vm_run(struct VM *vm)
       case OP_RETURN: op_return(vm, regs); break;
       case OP_STOP: op_stop(vm, regs); break;
       default:
-        cprintf("[Unknown opcode: %d]", op);
+        //cprintf("[Unknown opcode: %d]", op);
+        put_str(NTADR_A(0,0),"UNKNOWN OPCODE");
         break;
     }
     if (op == OP_STOP) break;
