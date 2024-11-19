@@ -2,7 +2,7 @@ COMPILER = "cc65"
 ASSEMBLER = "ca65"
 LINKER = "ld65"
 ASFLAGS = ""
-CFLAGS = "-t nes -Oi --add-source"
+CFLAGS = "-t nes -I./include -Oi --add-source"
 LDFLAGS = "-C nrom_128_horz.cfg"
 
 MRB_DATA = "src/mrb_data.h"
@@ -17,10 +17,10 @@ file "obj/crt0.o" => "crt0.s" do |t|
   sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{t.source}"
 end
 
-SRCS = Dir["src/*.c"]
+SRCS = Dir["src/*.c"] + ["main.c"]
 OBJS = SRCS.map { |s| "obj/#{File.basename s, ".c"}.o" }
 SRCS.zip(OBJS).each do |src, obj|
-  file obj => src do |t|
+  file obj => [src, MRB_DATA] do |t|
     asm = t.name.sub(/\.o$/, ".s")
     sh "#{COMPILER} #{CFLAGS} -o #{asm} #{t.source}"
     sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{asm}"
@@ -30,6 +30,12 @@ end
 file "bin/nesruby.nes" => ["obj/crt0.o", *OBJS, MRB_DATA] do |t|
   sources = t.sources - [MRB_DATA]
   sh "#{LINKER} #{LDFLAGS} -o #{t.name} #{sources.join " "} nes.lib"
+end
+
+task :clean do
+  rm Dir["obj/*.[os]"]
+  rm "a.mrb"
+  rm MRB_DATA
 end
 
 task default: "bin/nesruby.nes"

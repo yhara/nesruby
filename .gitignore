@@ -1,6 +1,5 @@
 /a.mrb
 /bin/*.nes
 /bin/*.nes.map
-/obj/*.o
-/obj/*.o.dep
+/obj
 /src/mrb_data.h
