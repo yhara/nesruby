@@ -1,7 +1,9 @@
 #include <string.h> // for memcmp
-#include "shims.h"
 #include "debug.h"
+#include "shims.h"
+#include "symbol.h"
 #include "vm.h"
+#include "value.h"
 
 static const int SIZE_RITE_BINARY_HEADER = 20;
 static const int SIZE_RITE_SECTION_HEADER = 12;
@@ -21,6 +23,9 @@ static mrbc_irep * load_irep_1(struct VM *vm, const uint8_t *bin, int *len, int 
   mrbc_irep irep;
   int i, siz;
   const uint8_t *p = bin + 4;	// 4 = skip record size.
+  mrbc_sym *tbl_syms;
+  char *sym_str;
+  mrbc_sym sym;
   (void)len;
   (void)flag_top;
 
@@ -54,6 +59,22 @@ static mrbc_irep * load_irep_1(struct VM *vm, const uint8_t *bin, int *len, int 
   siz = sizeof(mrbc_sym) * irep.slen + sizeof(uint16_t) * irep.plen;
   siz += (-siz & 0x03);	// padding. 32bit align.
   irep.ofs_ireps = siz >> 2;
+
+  // TODO: allocate new irep
+
+  // make a sym_id table.
+  tbl_syms = mrbc_irep_tbl_syms(&irep);
+  for( i = 0; i < irep.slen; i++ ) {
+    siz = bin_to_uint16(p) + 1;	p += 2;
+    sym_str = (char *)p;
+    sym = mrbc_str_to_symid( sym_str );
+    if( sym < 0 ) {
+      panic("LORDER: TOO MANY SYMBOLS");
+      return NULL;
+    }
+    *tbl_syms++ = sym;
+    p += (siz);
+  }
 
   vm->cur_irep = &irep;
   vm->inst = (uint8_t *)irep.inst;
