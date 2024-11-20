@@ -236,10 +236,11 @@ void __fastcall__ vram_write(unsigned char *src,unsigned int size);
 void __fastcall__ vram_unrle(const unsigned char *data);
 
 
-
-//like a normal memcpy, but does not return anything
-
-void __fastcall__ memcpy(void *dst,void *src,unsigned int len);
+// nesruby: disabled because this conflicts with the one in string.h which
+// is needed for `memcmp`
+// //like a normal memcpy, but does not return anything
+// 
+// void __fastcall__ memcpy(void *dst,void *src,unsigned int len);
 
 //like memset, but does not return anything
 

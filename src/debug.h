@@ -12,9 +12,16 @@ static void put_str(unsigned int adr,const char *str)
   }
   ppu_on_all();
 }
+
 static void put_digit(unsigned int adr, unsigned char i)
 {
   char buf[10];
   itoa(i,buf,10);
   put_str(adr,buf);
+}
+
+static void panic(const char *str)
+{
+  put_str(NTADR_A(0, 0), str);
+  while(1);
 }

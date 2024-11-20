@@ -1,7 +1,7 @@
-#include <conio.h> // for cprintf(debug)
-#include "shims.h"
-#include "vm.h"
 #include <string.h> // for memcmp
+#include "shims.h"
+#include "debug.h"
+#include "vm.h"
 
 static const int SIZE_RITE_BINARY_HEADER = 20;
 static const int SIZE_RITE_SECTION_HEADER = 12;
@@ -32,25 +32,31 @@ static mrbc_irep * load_irep_1(struct VM *vm, const uint8_t *bin, int *len, int 
   irep.inst = p;
 
   // POOL block
-//  p += irep.ilen + SIZE_RITE_CATCH_HANDLER * irep.clen;
-//  irep.pool = p;
-//  irep.plen = bin_to_uint16(p);		p += 2;
+  p += irep.ilen + SIZE_RITE_CATCH_HANDLER * irep.clen;
+  irep.pool = p;
+  irep.plen = bin_to_uint16(p);		p += 2;
 
-//  // skip pool
-//  for( i = 0; i < irep.plen; i++ ) {
-//    siz = 0;
-//    switch( *p++ ) {
-//    case IREP_TT_STR:
-//    case IREP_TT_SSTR:	siz = bin_to_uint16(p) + 3;	break;
-//    default:
-//      //mrbc_raise(vm, MRBC_CLASS(Exception), "Loader unknown TT found.");
-//      return NULL;
-//    }
-//    p += siz;
-//  }
+  // skip pool
+  for( i = 0; i < irep.plen; i++ ) {
+    siz = 0;
+    switch( *p++ ) {
+    case IREP_TT_STR:
+    case IREP_TT_SSTR:	siz = bin_to_uint16(p) + 3;	break;
+    default:
+      panic("LORDER: UNKNOWN TT");
+      return NULL;
+    }
+    p += siz;
+  }
+
+  // num of symbols, offset of tbl_ireps.
+  irep.slen = bin_to_uint16(p);		p += 2;
+  siz = sizeof(mrbc_sym) * irep.slen + sizeof(uint16_t) * irep.plen;
+  siz += (-siz & 0x03);	// padding. 32bit align.
+  irep.ofs_ireps = siz >> 2;
 
   vm->cur_irep = &irep;
-  vm->inst = (uint8_t *)p;
+  vm->inst = (uint8_t *)irep.inst;
   // TEMP: Run the VM from here
   mrbc_vm_run(vm);
 
