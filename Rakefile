@@ -17,10 +17,11 @@ file "obj/crt0.o" => "crt0.s" do |t|
   sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{t.source}"
 end
 
+INCLUDES = Dir["src/*.h"] + Dir["include/*.h"]
 SRCS = Dir["src/*.c"] + ["main.c"]
 OBJS = SRCS.map { |s| "obj/#{File.basename s, ".c"}.o" }
 SRCS.zip(OBJS).each do |src, obj|
-  file obj => [src, MRB_DATA] do |t|
+  file obj => [src, *INCLUDES, MRB_DATA] do |t|
     asm = t.name.sub(/\.o$/, ".s")
     sh "#{COMPILER} #{CFLAGS} -o #{asm} #{t.source}"
     sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{asm}"
