@@ -4,10 +4,12 @@
 static const char *builtin_symbols[] = {
   "hello",  // MRBC_SYMID_hello = 0(0x0)
   "bye",  // MRBC_SYMID_bye = 1(0x1)
+  "wait_frame",  // MRBC_SYMID_wait_frame = 2(0x2)
 };
 enum {
   MRBC_SYMID_hello = 0,
   MRBC_SYMID_bye = 1,
+  MRBC_SYMID_wait_frame = 2,
 };
 #define MRBC_SYM(sym) MRBC_SYMID_##sym
 #endif

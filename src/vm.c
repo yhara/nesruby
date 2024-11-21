@@ -81,10 +81,12 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
   sym = mrbc_irep_symbol_id(vm->cur_irep, b);
   //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
   if (sym == MRBC_SYM(hello)) {
-    put_str(NTADR_A(0,line),"HELLO");
+    put_digit(NTADR_A(0,line), regs[a+1].i);
   } else if (sym == MRBC_SYM(bye)) {
     put_str(NTADR_A(0,line),"BYE");
-  } 
+  } else if (sym == MRBC_SYM(wait_frame)) {
+    ppu_wait_frame();
+  }
   line++;
 }
 

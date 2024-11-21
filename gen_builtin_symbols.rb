@@ -1,6 +1,7 @@
 SYMS = %w(
   hello
   bye
+  wait_frame
 )
 
 puts <<EOD
