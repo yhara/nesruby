@@ -11,6 +11,13 @@ static void op_loadi(mrbc_vm *vm, mrbc_value *regs)
   mrbc_decref(&regs[a]);
   mrbc_set_integer(&regs[a], b);
 }
+static void op_loadineg( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_BB();
+
+  mrbc_decref(&regs[a]);
+  mrbc_set_integer(&regs[a], -(mrbc_int_t)b);
+}
 static void op_loadi_n(mrbc_vm *vm, mrbc_value *regs)
 {
   int opcode = vm->inst[-1];
@@ -106,6 +113,7 @@ void mrbc_vm_run(struct VM *vm)
     //for(i=0;i<10000;i++);
     switch (op) {
       case OP_LOADI: op_loadi(vm, regs); break;
+      case OP_LOADINEG:   op_loadineg   (vm, regs); break;
       case OP_LOADI__1:   // fall through
       case OP_LOADI_0:    // fall through
       case OP_LOADI_1:    // fall through
