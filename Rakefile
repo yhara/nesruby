@@ -13,15 +13,22 @@ file MRB_DATA => ["a.mrb", "arraynize.rb"] do |t|
   sh "ruby arraynize.rb #{t.source} a.rb > #{t.name}"
 end
 
+BUILTIN_SYMBOLS = "src/_autogen_builtin_symbol.h"
+file BUILTIN_SYMBOLS => "gen_builtin_symbols.rb" do |t|
+  sh "ruby gen_builtin_symbols.rb > #{t.name}"
+end
+
 file "obj/crt0.o" => "crt0.s" do |t|
   sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{t.source}"
 end
 
 INCLUDES = Dir["src/*.h"] + Dir["include/*.h"]
+DEPS = [*INCLUDES, MRB_DATA, BUILTIN_SYMBOLS]
+
 SRCS = Dir["src/*.c"] + ["main.c"]
 OBJS = SRCS.map { |s| "obj/#{File.basename s, ".c"}.o" }
 SRCS.zip(OBJS).each do |src, obj|
-  file obj => [src, *INCLUDES, MRB_DATA] do |t|
+  file obj => [src, *DEPS] do |t|
     asm = t.name.sub(/\.o$/, ".s")
     sh "#{COMPILER} #{CFLAGS} -o #{asm} #{t.source}"
     sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{asm}"

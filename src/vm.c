@@ -1,5 +1,5 @@
 #include "opcode.h"
-#include "builtin_symbol.h"
+#include "_autogen_builtin_symbol.h"
 #include "value.h"
 #include "vm.h"
 #include "debug.h"
