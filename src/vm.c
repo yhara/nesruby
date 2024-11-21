@@ -1,4 +1,5 @@
 #include "opcode.h"
+#include "builtin_symbol.h"
 #include "value.h"
 #include "vm.h"
 #include "debug.h"
@@ -58,6 +59,7 @@ static void op_jmp( mrbc_vm *vm, mrbc_value *regs)
   vm->inst += (int16_t)a;
 }
 
+static int line = 0;
 static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
 {
   mrbc_sym sym;
@@ -71,7 +73,12 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
   //TODO
   sym = mrbc_irep_symbol_id(vm->cur_irep, b);
   //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
-  //cprintf("hello");
+  if (sym == MRBC_SYM(hello)) {
+    put_str(NTADR_A(0,line),"HELLO");
+  } else if (sym == MRBC_SYM(bye)) {
+    put_str(NTADR_A(0,line),"BYE");
+  } 
+  line++;
 }
 
 static void op_return(mrbc_vm *vm, mrbc_value *regs)

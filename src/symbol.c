@@ -1,4 +1,5 @@
 #include <string.h> // for strcmp
+#include "vm_config.h"
 #include "symbol.h"
 
 #define MRBC_SYMBOL_TABLE_INDEX_TYPE	uint8_t
