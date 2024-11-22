@@ -1,7 +1,6 @@
 SYMS = %w(
-  hello
-  bye
   wait_frame
+  draw_arrow
   draw_ruby
 ).sort
 

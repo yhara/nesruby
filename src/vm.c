@@ -4,6 +4,18 @@
 #include "vm.h"
 #include "debug.h"
 
+static void op_nop( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_Z();
+}
+static void op_move( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_BB();
+
+  mrbc_incref(&regs[b]);
+  mrbc_decref(&regs[a]);
+  regs[a] = regs[b];
+}
 static void op_loadi(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_BB();
@@ -66,7 +78,8 @@ static void op_jmp( mrbc_vm *vm, mrbc_value *regs)
   vm->inst += (int16_t)a;
 }
 
-static int line = 0;
+const static char SPR_ARROW = 0;
+const static char SPR_RUBY = 4;
 static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
 {
   mrbc_sym sym;
@@ -80,14 +93,15 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
   //TODO
   sym = mrbc_irep_symbol_id(vm->cur_irep, b);
   //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
-  if (sym == MRBC_SYM(hello)) {
-    put_digit(NTADR_A(0,line), regs[a+1].i);
-  } else if (sym == MRBC_SYM(bye)) {
-    put_str(NTADR_A(0,line),"BYE");
-  } else if (sym == MRBC_SYM(wait_frame)) {
+  if (sym == MRBC_SYM(wait_frame)) {
     ppu_wait_frame();
+  } else if (sym == MRBC_SYM(draw_arrow)) {
+    oam_spr(regs[a+1].i,
+            regs[a+2].i, 0x45, 1, SPR_ARROW);
+  } else if (sym == MRBC_SYM(draw_ruby)) {
+    oam_spr(regs[a+1].i,
+            regs[a+2].i, 0x46, 2, SPR_RUBY);
   }
-  line++;
 }
 
 static void op_return(mrbc_vm *vm, mrbc_value *regs)
@@ -114,6 +128,8 @@ void mrbc_vm_run(struct VM *vm)
     //put_digit(NTADR_A(0,0),op);
     //for(i=0;i<10000;i++);
     switch (op) {
+      case OP_NOP:        op_nop        (vm, regs ); break;
+      case OP_MOVE:       op_move       (vm, regs ); break;
       case OP_LOADI: op_loadi(vm, regs); break;
       case OP_LOADINEG:   op_loadineg   (vm, regs); break;
       case OP_LOADI__1:   // fall through
@@ -139,8 +155,7 @@ void mrbc_vm_run(struct VM *vm)
       case OP_RETURN: op_return(vm, regs); break;
       case OP_STOP: op_stop(vm, regs); break;
       default:
-        //cprintf("[Unknown opcode: %d]", op);
-        put_str(NTADR_A(0,0),"UNKNOWN OPCODE");
+        panic("UNKNOWN OPCODE");
         break;
     }
     if (op == OP_STOP) break;

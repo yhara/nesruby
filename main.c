@@ -46,11 +46,10 @@ void main(void)
   //there is a way to update small number of nametable tiles while rendering
   //is enabled, using set_vram_update and an update list
 
-  run_ruby();
-
-  //put_str(NTADR_A(2,2),"HELLO, WORLD,");
-
   ppu_on_all();//enable rendering
+
+  //mrbc_init(memory_pool, MRBC_MEMORY_SIZE);
+  run_ruby();
 
   x = 0;
   dx = 1;
