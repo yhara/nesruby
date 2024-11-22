@@ -2,14 +2,17 @@
 #ifndef MRBC_SRC_AUTOGEN_BUILTIN_SYMBOL_H_
 #define MRBC_SRC_AUTOGEN_BUILTIN_SYMBOL_H_
 static const char *builtin_symbols[] = {
-  "hello",  // MRBC_SYMID_hello = 0(0x0)
-  "bye",  // MRBC_SYMID_bye = 1(0x1)
-  "wait_frame",  // MRBC_SYMID_wait_frame = 2(0x2)
+  "bye",  // MRBC_SYMID_bye = 0(0x0)
+  "draw_ruby",  // MRBC_SYMID_draw_ruby = 1(0x1)
+  "hello",  // MRBC_SYMID_hello = 2(0x2)
+  "wait_frame",  // MRBC_SYMID_wait_frame = 3(0x3)
 };
 enum {
-  MRBC_SYMID_hello = 0,
-  MRBC_SYMID_bye = 1,
-  MRBC_SYMID_wait_frame = 2,
+  MRBC_SYMID_bye = 0,
+  MRBC_SYMID_draw_ruby = 1,
+  MRBC_SYMID_hello = 2,
+  MRBC_SYMID_wait_frame = 3,
 };
 #define MRBC_SYM(sym) MRBC_SYMID_##sym
+#define OFFSET_BUILTIN_SYMBOL 4
 #endif

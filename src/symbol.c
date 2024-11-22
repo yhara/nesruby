@@ -1,4 +1,5 @@
 #include <string.h> // for strcmp
+#include "_autogen_builtin_symbol.h"
 #include "vm_config.h"
 #include "symbol.h"
 
@@ -20,6 +21,39 @@ static uint16_t calc_hash(const char *str)
     h = h * 17 + *str++;
   }
   return h;
+}
+
+static int search_builtin_symbol( const char *str )
+{
+  int left = 0;
+  int mid;
+  int right = sizeof(builtin_symbols) / sizeof(builtin_symbols[0]);
+  const unsigned char *p1, *p2;
+
+  while( left < right ) {
+    mid = (left + right) / 2;
+    p1 = (const unsigned char *)builtin_symbols[mid];
+    p2 = (const unsigned char *)str;
+
+    while( 1 ) {	// string compare, same order as cruby.
+      if( *p1 < *p2 ) {
+	left = mid + 1;
+	break;
+      }
+      if( *p1 > *p2 ) {
+	right = mid;
+	break;
+      }
+      if( *p1 == 0 ) {
+	return mid;
+      }
+
+      p1++;
+      p2++;
+    }
+  }
+
+  return -1;
 }
 
 static int search_index( uint16_t hash, const char *str )
@@ -57,15 +91,15 @@ void mrbc_cleanup_symbol(void)
 
 mrbc_sym mrbc_str_to_symid(const char *str)
 {
+  uint16_t h;
   mrbc_sym sym_id;
-  //TODO
-  //sym_id = search_builtin_symbol(str);
-  //if( sym_id >= 0 ) return sym_id;
+  sym_id = search_builtin_symbol(str);
+  if( sym_id >= 0 ) return sym_id;
 
-  uint16_t h = calc_hash(str);
+  h = calc_hash(str);
   sym_id = search_index(h, str);
   if( sym_id < 0 ) sym_id = add_index( h, str );
   if( sym_id < 0 ) return sym_id;
 
-  return sym_id; // + OFFSET_BUILTIN_SYMBOL;
+  return sym_id; + OFFSET_BUILTIN_SYMBOL;
 }
