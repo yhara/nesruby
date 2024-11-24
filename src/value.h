@@ -26,6 +26,11 @@ struct RObject {
 
 typedef struct RObject mrbc_value;
 
+#define mrbc_type(o)		((o).tt)
+#define mrbc_integer(o)		((o).i)
+#define mrbc_float(o)		((o).d)
+#define mrbc_symbol(o)		((o).i)
+
 // setters
 #define mrbc_set_integer(p,n)	(p)->tt = MRBC_TT_INTEGER; (p)->i = (n)
 #define mrbc_set_nil(p)		(p)->tt = MRBC_TT_NIL
@@ -33,6 +38,8 @@ typedef struct RObject mrbc_value;
 #define mrbc_set_false(p)	(p)->tt = MRBC_TT_FALSE
 #define mrbc_set_bool(p,n)	(p)->tt = (n)? MRBC_TT_TRUE: MRBC_TT_FALSE
 #define mrbc_set_symbol(p,n)	(p)->tt = MRBC_TT_SYMBOL; (p)->i = (n)
+
+int mrbc_compare(const mrbc_value *v1, const mrbc_value *v2);
 
 static void mrbc_decref(mrbc_value *v)
 {

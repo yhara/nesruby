@@ -1,3 +1,9 @@
+MRBC = if RUBY_PLATFORM =~ /darwin/
+         # mruby 3.3.0 is broken on intel mac
+         "~/research/mruby/bin/mrbc"
+       else
+         "mrbc"
+       end
 COMPILER = "cc65"
 ASSEMBLER = "ca65"
 LINKER = "ld65"
@@ -7,7 +13,7 @@ LDFLAGS = "-C nrom_128_horz.cfg"
 
 MRB_DATA = "src/mrb_data.h"
 file "a.mrb" => "a.rb" do |t|
-  sh "mrbc -v -o #{t.name} #{t.source}"
+  sh "#{MRBC} -v -o #{t.name} #{t.source}"
 end
 file MRB_DATA => ["a.mrb", "arraynize.rb"] do |t|
   sh "ruby arraynize.rb #{t.source} a.rb > #{t.name}"

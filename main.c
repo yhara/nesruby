@@ -1,11 +1,11 @@
 #include "neslib.h"
 #include "src/debug.h"
 #include "src/load.h"
-#include "src/mrb_data.h"
 #include "src/opcode.h"
 #include "src/shims.h"
 #include "src/value.h"
 #include "src/vm.h"
+#include "src/mrb_data.h"
 
 //palette for balls, there are four sets for different ball colors
 const unsigned char palSprites[16]={
@@ -15,8 +15,10 @@ const unsigned char palSprites[16]={
   0x0f,0x19,0x29,0x39
 };
 
+#define MRBC_MEMORY_SIZE 1024
+static uint8_t memory_pool[MRBC_MEMORY_SIZE];
 static mrbc_vm vm;
-static mrbc_value mrbc_regs[16];
+static mrbc_value mrbc_regs[32];
 void run_ruby()
 {
   uint8_t *p = (uint8_t *)mrb_data;

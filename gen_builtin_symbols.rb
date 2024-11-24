@@ -2,6 +2,9 @@ SYMS = %w(
   wait_frame
   draw_arrow
   draw_ruby
+  play_sound
+  pad_trigger
+  btn_a_pressed
 ).sort
 
 puts <<EOD

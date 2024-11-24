@@ -2,15 +2,21 @@
 #ifndef MRBC_SRC_AUTOGEN_BUILTIN_SYMBOL_H_
 #define MRBC_SRC_AUTOGEN_BUILTIN_SYMBOL_H_
 static const char *builtin_symbols[] = {
-  "draw_arrow",  // MRBC_SYMID_draw_arrow = 0(0x0)
-  "draw_ruby",  // MRBC_SYMID_draw_ruby = 1(0x1)
-  "wait_frame",  // MRBC_SYMID_wait_frame = 2(0x2)
+  "btn_a_pressed",  // MRBC_SYMID_btn_a_pressed = 0(0x0)
+  "draw_arrow",  // MRBC_SYMID_draw_arrow = 1(0x1)
+  "draw_ruby",  // MRBC_SYMID_draw_ruby = 2(0x2)
+  "pad_trigger",  // MRBC_SYMID_pad_trigger = 3(0x3)
+  "play_sound",  // MRBC_SYMID_play_sound = 4(0x4)
+  "wait_frame",  // MRBC_SYMID_wait_frame = 5(0x5)
 };
 enum {
-  MRBC_SYMID_draw_arrow = 0,
-  MRBC_SYMID_draw_ruby = 1,
-  MRBC_SYMID_wait_frame = 2,
+  MRBC_SYMID_btn_a_pressed = 0,
+  MRBC_SYMID_draw_arrow = 1,
+  MRBC_SYMID_draw_ruby = 2,
+  MRBC_SYMID_pad_trigger = 3,
+  MRBC_SYMID_play_sound = 4,
+  MRBC_SYMID_wait_frame = 5,
 };
 #define MRBC_SYM(sym) MRBC_SYMID_##sym
-#define OFFSET_BUILTIN_SYMBOL 3
+#define OFFSET_BUILTIN_SYMBOL 6
 #endif

@@ -7,6 +7,8 @@
 static void op_nop( mrbc_vm *vm, mrbc_value *regs )
 {
   FETCH_Z();
+  (void)vm;   // Surpress "never used" warning
+  (void)regs; // Surpress "never used" warning
 }
 static void op_move( mrbc_vm *vm, mrbc_value *regs)
 {
@@ -78,6 +80,15 @@ static void op_jmp( mrbc_vm *vm, mrbc_value *regs)
   vm->inst += (int16_t)a;
 }
 
+static void op_jmpnot( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_BS();
+
+  if( regs[a].tt <= MRBC_TT_FALSE ) {
+    vm->inst += (int16_t)b;
+  }
+}
+
 const static char SPR_ARROW = 0;
 const static char SPR_RUBY = 4;
 static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
@@ -93,21 +104,71 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
   //TODO
   sym = mrbc_irep_symbol_id(vm->cur_irep, b);
   //send_by_name( vm, mrbc_irep_symbol_id(vm->cur_irep, b), a, c );
-  if (sym == MRBC_SYM(wait_frame)) {
-    ppu_wait_frame();
-  } else if (sym == MRBC_SYM(draw_arrow)) {
-    oam_spr(regs[a+1].i,
-            regs[a+2].i, 0x45, 1, SPR_ARROW);
-  } else if (sym == MRBC_SYM(draw_ruby)) {
-    oam_spr(regs[a+1].i,
-            regs[a+2].i, 0x46, 2, SPR_RUBY);
+  switch (sym) {
+    case MRBC_SYM(wait_frame):
+      ppu_wait_frame();
+      break;
+    case MRBC_SYM(draw_arrow):
+      oam_spr(regs[a+1].i,
+              regs[a+2].i, 0x45, 1, SPR_ARROW);
+      break;
+    case MRBC_SYM(draw_ruby):
+      oam_spr(regs[a+1].i,
+              regs[a+2].i, 0x46, 2, SPR_RUBY);
+      break;
+    case MRBC_SYM(play_sound):
+      sfx_play(regs[a+1].i, regs[a+2].i);
+      break;
+    case MRBC_SYM(pad_trigger):
+      mrbc_set_integer(&regs[a], pad_trigger(regs[a+1].i));
+      break;
+    case MRBC_SYM(btn_a_pressed):
+      //regs[a+1].i&PAD_A;
+      //mrbc_set_bool(&regs[a], regs[a+1].i&PAD_A);
+      mrbc_set_true(&regs[a]);
+      break;
+    default:
+      panic("UNKNOWN METHOD");
   }
 }
 
 static void op_return(mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_B();
+  (void)regs; // Surpress "never used" warning
   //put_digit(NTADR_A(0,0), regs[a].i);
+}
+
+static void op_add( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_B();
+
+  if( regs[a].tt == MRBC_TT_INTEGER ) {
+    if( regs[a+1].tt == MRBC_TT_INTEGER ) {     // in case of Integer, Integer
+      regs[a].i += regs[a+1].i;
+      return;
+    }
+  }
+
+  // other case
+  panic("TODO: GENERIC ADD");
+  //send_by_name( vm, MRBC_SYM(PLUS), a, 1 );
+}
+
+static void op_eq( mrbc_vm *vm, mrbc_value *regs)
+{
+  int result;
+  FETCH_B();
+
+//  if (regs[a].tt == MRBC_TT_OBJECT) {
+//    send_by_name(vm, MRBC_SYM(EQ_EQ), a, 1);
+//    return;
+//  }
+
+  result = mrbc_compare(&regs[a], &regs[a+1]);
+
+  mrbc_decref(&regs[a]);
+  regs[a].tt = result ? MRBC_TT_FALSE : MRBC_TT_TRUE;
 }
 
 static void op_stop(mrbc_vm *vm, mrbc_value *regs)
@@ -126,6 +187,7 @@ void mrbc_vm_run(struct VM *vm)
     op = *vm->inst++;
 
     //put_digit(NTADR_A(0,0),op);
+    //while(1);
     //for(i=0;i<10000;i++);
     switch (op) {
       case OP_NOP:        op_nop        (vm, regs ); break;
@@ -150,9 +212,16 @@ void mrbc_vm_run(struct VM *vm)
 
       case OP_JMP:        op_jmp        (vm, regs); break;
 
+      case OP_JMPNOT:     op_jmpnot     (vm, regs); break;
+
       case OP_SSEND:      op_ssend      (vm, regs); break;
 
       case OP_RETURN: op_return(vm, regs); break;
+
+      case OP_ADD:        op_add        (vm, regs); break;
+
+      case OP_EQ:         op_eq         (vm, regs ); break;
+
       case OP_STOP: op_stop(vm, regs); break;
       default:
         panic("UNKNOWN OPCODE");

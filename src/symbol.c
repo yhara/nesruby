@@ -103,3 +103,16 @@ mrbc_sym mrbc_str_to_symid(const char *str)
 
   return sym_id; + OFFSET_BUILTIN_SYMBOL;
 }
+
+const char * mrbc_symid_to_str(mrbc_sym sym_id)
+{
+  if( sym_id < OFFSET_BUILTIN_SYMBOL ) {
+    return builtin_symbols[sym_id];
+  }
+
+  sym_id -= OFFSET_BUILTIN_SYMBOL;
+  if( sym_id < 0 ) return NULL;
+  if( sym_id >= sym_index_pos ) return NULL;
+
+  return sym_index[sym_id].cstr;
+}

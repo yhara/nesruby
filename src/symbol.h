@@ -4,5 +4,6 @@
 #include "value.h"
 
 mrbc_sym mrbc_str_to_symid(const char *str);
+const char *mrbc_symid_to_str(mrbc_sym sym_id);
 
 #endif
