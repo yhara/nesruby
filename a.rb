@@ -1,3 +1,4 @@
+y_speed = 2
 start_x = 0
 start_y = 100
 goal_x = 200
@@ -25,7 +26,7 @@ while true
     if btn_a_pressed(pad0)
       play_sound 3, 0
       dx = 0
-      dy = 1
+      dy = y_speed
     end
     if y >= goal_y
       dy = 0
@@ -36,7 +37,7 @@ while true
           rdy = -1
         end
         y = goal_y
-        dy = -1
+        dy = 0-y_speed
       end
     end
     if y < start_y
