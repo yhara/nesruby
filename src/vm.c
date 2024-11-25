@@ -125,6 +125,14 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
     case MRBC_SYM(btn_a_pressed):
       mrbc_set_bool(&regs[a], regs[a+1].i&PAD_A);
       break;
+    case MRBC_SYM(show_title):
+      put_str(NTADR_A(10, 10), "RUBY CATCHER");
+      put_str(NTADR_A(11, 12), "PRESS BTN");
+      break;
+    case MRBC_SYM(hide_title):
+      put_str(NTADR_A(10, 10), "            ");
+      put_str(NTADR_A(11, 12), "         ");
+      break;
     default:
       panic("UNKNOWN METHOD");
   }
@@ -152,6 +160,45 @@ static void op_add( mrbc_vm *vm, mrbc_value *regs)
   panic("TODO: GENERIC ADD");
   //send_by_name( vm, MRBC_SYM(PLUS), a, 1 );
 }
+static void op_addi( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_BB();
+
+  if( regs[a].tt == MRBC_TT_INTEGER ) {
+    regs[a].i += b;
+    return;
+  }
+
+  panic("ADDI FAILED");
+  //mrbc_raise(vm, MRBC_CLASS(TypeError), "no implicit conversion of Integer");
+}
+static void op_sub( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_B();
+
+  if( regs[a].tt == MRBC_TT_INTEGER ) {
+    if( regs[a+1].tt == MRBC_TT_INTEGER ) {     // in case of Integer, Integer
+      regs[a].i -= regs[a+1].i;
+      return;
+    }
+  }
+
+  // other case
+  panic("TODO: GENERIC SUB");
+  //send_by_name( vm, MRBC_SYM(MINUS), a, 1 );
+}
+static void op_subi( mrbc_vm *vm, mrbc_value *regs )
+{
+  FETCH_BB();
+
+  if( regs[a].tt == MRBC_TT_INTEGER ) {
+    regs[a].i -= b;
+    return;
+  }
+
+  panic("SUBI FAILED");
+  //mrbc_raise(vm, MRBC_CLASS(TypeError), "no implicit conversion of Integer");
+}
 
 static void op_eq( mrbc_vm *vm, mrbc_value *regs)
 {
@@ -167,6 +214,66 @@ static void op_eq( mrbc_vm *vm, mrbc_value *regs)
 
   mrbc_decref(&regs[a]);
   regs[a].tt = result ? MRBC_TT_FALSE : MRBC_TT_TRUE;
+}
+static void op_lt( mrbc_vm *vm, mrbc_value *regs )
+{
+  int result;
+  FETCH_B();
+
+//  if (regs[a].tt == MRBC_TT_OBJECT) {
+//    send_by_name(vm, MRBC_SYM(LT), a, 1);
+//    return;
+//  }
+
+  result = mrbc_compare(&regs[a], &regs[a+1]);
+
+  mrbc_decref(&regs[a]);
+  regs[a].tt = result < 0 ? MRBC_TT_TRUE : MRBC_TT_FALSE;
+}
+static void op_le( mrbc_vm *vm, mrbc_value *regs )
+{
+  int result;
+  FETCH_B();
+
+//  if (regs[a].tt == MRBC_TT_OBJECT) {
+//    send_by_name(vm, MRBC_SYM(LT_EQ), a, 1);
+//    return;
+//  }
+
+  result = mrbc_compare(&regs[a], &regs[a+1]);
+
+  mrbc_decref(&regs[a]);
+  regs[a].tt = result <= 0 ? MRBC_TT_TRUE : MRBC_TT_FALSE;
+}
+static void op_gt( mrbc_vm *vm, mrbc_value *regs )
+{
+  int result;
+  FETCH_B();
+
+//  if (regs[a].tt == MRBC_TT_OBJECT) {
+//    send_by_name(vm, MRBC_SYM(GT), a, 1);
+//    return;
+//  }
+
+  result = mrbc_compare(&regs[a], &regs[a+1]);
+
+  mrbc_decref(&regs[a]);
+  regs[a].tt = result > 0 ? MRBC_TT_TRUE : MRBC_TT_FALSE;
+}
+static void op_ge( mrbc_vm *vm, mrbc_value *regs )
+{
+  int result;
+  FETCH_B();
+
+//  if (regs[a].tt == MRBC_TT_OBJECT) {
+//    send_by_name(vm, MRBC_SYM(GT_EQ), a, 1);
+//    return;
+//  }
+
+  result = mrbc_compare(&regs[a], &regs[a+1]);
+
+  mrbc_decref(&regs[a]);
+  regs[a].tt = result >= 0 ? MRBC_TT_TRUE : MRBC_TT_FALSE;
 }
 
 static void op_stop(mrbc_vm *vm, mrbc_value *regs)
@@ -217,8 +324,15 @@ void mrbc_vm_run(struct VM *vm)
       case OP_RETURN: op_return(vm, regs); break;
 
       case OP_ADD:        op_add        (vm, regs); break;
+      case OP_ADDI:       op_addi       (vm, regs); break;
+      case OP_SUB:        op_sub        (vm, regs); break;
+      case OP_SUBI:       op_subi       (vm, regs); break;
 
       case OP_EQ:         op_eq         (vm, regs ); break;
+      case OP_LT:         op_lt         (vm, regs); break;
+      case OP_LE:         op_le         (vm, regs); break;
+      case OP_GT:         op_gt         (vm, regs); break;
+      case OP_GE:         op_ge         (vm, regs); break;
 
       case OP_STOP: op_stop(vm, regs); break;
       default:

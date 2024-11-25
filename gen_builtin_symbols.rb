@@ -5,6 +5,8 @@ SYMS = %w(
   play_sound
   pad_trigger
   btn_a_pressed
+  show_title
+  hide_title
 ).sort
 
 puts <<EOD
