@@ -15,7 +15,7 @@ const unsigned char palSprites[16]={
   0x0f,0x19,0x29,0x39
 };
 
-#define MRBC_MEMORY_SIZE 1024
+#define MRBC_MEMORY_SIZE 924
 static uint8_t memory_pool[MRBC_MEMORY_SIZE];
 static mrbc_vm vm;
 static mrbc_value mrbc_regs[32];

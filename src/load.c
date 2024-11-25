@@ -79,8 +79,6 @@ static mrbc_irep * load_irep_1(struct VM *vm, const uint8_t *bin, int *len, int 
 
   vm->cur_irep = &irep;
   vm->inst = (uint8_t *)irep.inst;
-    //put_digit(NTADR_A(0,1),(unsigned int)irep.inst);
-    //while(1);
 
   // TEMP: Run the VM from here
   mrbc_vm_run(vm);

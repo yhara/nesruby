@@ -123,9 +123,7 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
       mrbc_set_integer(&regs[a], pad_trigger(regs[a+1].i));
       break;
     case MRBC_SYM(btn_a_pressed):
-      //regs[a+1].i&PAD_A;
-      //mrbc_set_bool(&regs[a], regs[a+1].i&PAD_A);
-      mrbc_set_true(&regs[a]);
+      mrbc_set_bool(&regs[a], regs[a+1].i&PAD_A);
       break;
     default:
       panic("UNKNOWN METHOD");

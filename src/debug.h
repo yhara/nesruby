@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdlib.h> // for itoa
 #include "neslib.h"
 
 static char put_str(unsigned int adr, const char *str)
@@ -16,7 +16,7 @@ static char put_str(unsigned int adr, const char *str)
   return i;
 }
 
-static void put_digit(unsigned int adr, unsigned char digit)
+static void put_digit(unsigned int adr, signed int digit)
 {
   char buf[10];
   itoa(digit,buf,10);
