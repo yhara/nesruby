@@ -4,6 +4,11 @@
 #include "shims.h"
 #include "value.h"
 
+// TEMP
+#include "_autogen_builtin_symbol.h"
+#include "vm_config.h"
+#define MAX_TOTAL_SYMBOLS_COUNT (MAX_SYMBOLS_COUNT + OFFSET_SYMBOLS_COUNT)
+
 typedef struct IREP {
   uint16_t nlocals;		//!< num of local variables
   uint16_t nregs;		//!< num of register variables
@@ -18,7 +23,7 @@ typedef struct IREP {
   const uint8_t *inst;		//!< pointer to instruction in RITE binary
   const uint8_t *pool;		//!< pointer to pool in RITE binary
 
-  uint8_t data[];		//!< variable data. (see load.c)
+  uint8_t data[MAX_SYMBOLS_COUNT];		//!< variable data. (see load.c)
 				//!<  mrbc_sym   tbl_syms[slen]
 				//!<  uint16_t   tbl_pools[plen]
 				//!<  mrbc_irep *tbl_ireps[rlen]

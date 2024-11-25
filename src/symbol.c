@@ -2,6 +2,7 @@
 #include "_autogen_builtin_symbol.h"
 #include "vm_config.h"
 #include "symbol.h"
+#include "debug.h"
 
 #define MRBC_SYMBOL_TABLE_INDEX_TYPE	uint8_t
 
@@ -101,7 +102,7 @@ mrbc_sym mrbc_str_to_symid(const char *str)
   if( sym_id < 0 ) sym_id = add_index( h, str );
   if( sym_id < 0 ) return sym_id;
 
-  return sym_id; + OFFSET_BUILTIN_SYMBOL;
+  return sym_id + OFFSET_BUILTIN_SYMBOL;
 }
 
 const char * mrbc_symid_to_str(mrbc_sym sym_id)
