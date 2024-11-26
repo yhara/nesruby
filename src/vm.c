@@ -116,6 +116,12 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
       oam_spr(regs[a+1].i,
               regs[a+2].i, 0x46, 2, SPR_RUBY);
       break;
+//    case MRBC_SYM(play_music):
+//      music_play(regs[a+1].i);
+//      break;
+//    case MRBC_SYM(stop_music):
+//      music_stop();
+//      break;
     case MRBC_SYM(play_sound):
       sfx_play(regs[a+1].i, regs[a+2].i);
       break;

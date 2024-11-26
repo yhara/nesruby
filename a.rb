@@ -1,8 +1,9 @@
-y_speed = 2
-start_x = 0
-start_y = 100
-goal_x = 200
-goal_y = 200
+ys = 2
+xs = 5
+sx = 0
+sy = 100
+gx = 200
+gy = 200
 title = true
 show_title
 while true
@@ -12,46 +13,54 @@ while true
       play_sound 3, 0
       hide_title
       title = false
+      #play_music 0
 
-      x = start_x
-      y = start_y
-      dx = 1
+      x = sx
+      y = sy
+      dx = xs
       dy = 0
-      rx = goal_x
-      ry = goal_y
+      rx = gx
+      ry = gy
       rdy = 0
-      catch_wait = 30 
+      cw = 30 
       caught = false
     end
   else
-    if btn_a_pressed(pad0)
+    x += dx
+    y += dy
+    ry += rdy
+    if x >= 255
+      dx = 0-xs
+    elsif x < 0
+      x = 0
+      dx = xs
+    end
+    if y == sy && btn_a_pressed(pad0)
+      #stop_music
       play_sound 3, 0
       dx = 0
-      dy = y_speed
+      dy = ys
     end
-    if y >= goal_y
+    if y >= gy
       dy = 0
-      catch_wait -= 1
-      if catch_wait == 0
-        if goal_x - 8 < x && x < goal_x + 8
+      cw -= 1
+      if cw == 0
+        if gx - 8 < x && x < gx + 8
           #play_sound 0, 0
           caught = true
-          rdy = 0-y_speed
+          rdy = 0-ys
         end
-        y = goal_y
-        dy = 0-y_speed
+        y = gy
+        dy = 0-ys
       end
     end
-    if y < start_y
+    if y < sy
       if caught
         play_sound 4, 0
       end
       title = true
       show_title
     end
-    x += dx
-    y += dy
-    ry += rdy
 
     wait_frame
     draw_arrow x, y
