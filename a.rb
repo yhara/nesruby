@@ -21,6 +21,7 @@ while true
       ry = goal_y
       rdy = 0
       catch_wait = 30 
+      caught = false
     end
   else
     if btn_a_pressed(pad0)
@@ -32,16 +33,19 @@ while true
       dy = 0
       catch_wait -= 1
       if catch_wait == 0
-        if x == goal_x
-          play_sound 0, 0
-          rdy = -1
+        if goal_x - 8 < x && x < goal_x + 8
+          #play_sound 0, 0
+          caught = true
+          rdy = 0-y_speed
         end
         y = goal_y
         dy = 0-y_speed
       end
     end
     if y < start_y
-      play_sound 4, 0
+      if caught
+        play_sound 4, 0
+      end
       title = true
       show_title
     end
