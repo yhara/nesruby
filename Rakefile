@@ -4,6 +4,7 @@ MRBC = if RUBY_PLATFORM =~ /darwin/
        else
          "mrbc"
        end
+MRUBY_STRIP = "mruby-strip"
 CFG = "nrom_256_horz.cfg"
 COMPILER = "cc65"
 ASSEMBLER = "ca65"
@@ -15,6 +16,7 @@ LDFLAGS = "-C #{CFG}"
 MRB_DATA = "src/mrb_data.h"
 file "a.mrb" => "a.rb" do |t|
   sh "#{MRBC} -v -o #{t.name} #{t.source}"
+  sh "#{MRUBY_STRIP} -l #{t.name}"
 end
 file MRB_DATA => ["a.mrb", "arraynize.rb"] do |t|
   sh "ruby arraynize.rb #{t.source} a.rb > #{t.name}"
