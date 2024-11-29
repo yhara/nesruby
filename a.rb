@@ -1,5 +1,5 @@
-ys = 2
-xs = 5
+y_speed = 2
+x_speed = 5
 sx = 0
 sy = 100
 gx = 200
@@ -17,7 +17,7 @@ while true
 
       x = sx
       y = sy
-      dx = xs
+      dx = x_speed
       dy = 0
       rx = gx
       ry = gy
@@ -30,16 +30,16 @@ while true
     y += dy
     ry += rdy
     if x >= 255
-      dx = 0-xs
+      dx = 0-x_speed
     elsif x < 0
       x = 0
-      dx = xs
+      dx = x_speed
     end
     if y == sy && btn_a_pressed(pad0)
       #stop_music
       play_sound 3, 0
       dx = 0
-      dy = ys
+      dy = y_speed
     end
     if y >= gy
       dy = 0
@@ -48,10 +48,10 @@ while true
         if gx - 8 < x && x < gx + 8
           #play_sound 0, 0
           caught = true
-          rdy = 0-ys
+          rdy = 0-y_speed
         end
         y = gy
-        dy = 0-ys
+        dy = 0-y_speed
       end
     end
     if y < sy

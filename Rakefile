@@ -4,12 +4,13 @@ MRBC = if RUBY_PLATFORM =~ /darwin/
        else
          "mrbc"
        end
+CFG = "nrom_256_horz.cfg"
 COMPILER = "cc65"
 ASSEMBLER = "ca65"
 LINKER = "ld65"
 ASFLAGS = ""
 CFLAGS = "-t nes -I./include -Oi --add-source"
-LDFLAGS = "-C nrom_128_horz.cfg"
+LDFLAGS = "-C #{CFG}"
 
 MRB_DATA = "src/mrb_data.h"
 file "a.mrb" => "a.rb" do |t|
@@ -41,8 +42,8 @@ SRCS.zip(OBJS).each do |src, obj|
   end
 end
 
-file "bin/nesruby.nes" => ["obj/crt0.o", *OBJS, MRB_DATA] do |t|
-  sources = t.sources - [MRB_DATA]
+file "bin/nesruby.nes" => ["obj/crt0.o", *OBJS, MRB_DATA, CFG] do |t|
+  sources = t.sources - [MRB_DATA, CFG]
   sh "#{LINKER} #{LDFLAGS} -o #{t.name} #{sources.join " "} nes.lib"
 end
 

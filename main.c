@@ -52,30 +52,5 @@ void main(void)
 
   //mrbc_init(memory_pool, MRBC_MEMORY_SIZE);
   run_ruby();
-
-  x = 0;
-  dx = 1;
-  while(1)
-  {
-    ppu_wait_frame();//wait for next TV frame
-
-    input = pad_trigger(0);
-    if(input&PAD_A)
-    {
-      sfx_play(3,3);
-    }
-
-    //for (n = 0; n < 32; n++) {
-    //  spr = oam_spr(n*8, n/2, 0x40, 1, spr);
-    //}
-    x += dx;
-    if (x < 0 || x > 256-8) {
-      dx = -dx;
-      x += dx;
-    }
-    oam_spr(x, 8, 0x45, 1, SPR_ARROW);
-
-    oam_spr(200, 200, 0x46, 2, SPR_RUBY);
-  }
 }
 

@@ -7,6 +7,7 @@ SYMS = %w(
   btn_a_pressed
   show_title
   hide_title
+  rand8
 ).sort
 #  play_music
 #  stop_music

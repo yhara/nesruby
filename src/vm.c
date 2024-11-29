@@ -108,6 +108,9 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
     case MRBC_SYM(wait_frame):
       ppu_wait_frame();
       break;
+    case MRBC_SYM(rand8):
+      mrbc_set_integer(&regs[a], rand8());
+      break;
     case MRBC_SYM(draw_arrow):
       oam_spr(regs[a+1].i,
               regs[a+2].i, 0x45, 1, SPR_ARROW);
@@ -163,7 +166,7 @@ static void op_add( mrbc_vm *vm, mrbc_value *regs)
   }
 
   // other case
-  panic("TODO: GENERIC ADD");
+  panic("ADD");
   //send_by_name( vm, MRBC_SYM(PLUS), a, 1 );
 }
 static void op_addi( mrbc_vm *vm, mrbc_value *regs )
@@ -175,7 +178,7 @@ static void op_addi( mrbc_vm *vm, mrbc_value *regs )
     return;
   }
 
-  panic("ADDI FAILED");
+  panic("ADDI");
   //mrbc_raise(vm, MRBC_CLASS(TypeError), "no implicit conversion of Integer");
 }
 static void op_sub( mrbc_vm *vm, mrbc_value *regs )
@@ -190,7 +193,7 @@ static void op_sub( mrbc_vm *vm, mrbc_value *regs )
   }
 
   // other case
-  panic("TODO: GENERIC SUB");
+  panic("SUB");
   //send_by_name( vm, MRBC_SYM(MINUS), a, 1 );
 }
 static void op_subi( mrbc_vm *vm, mrbc_value *regs )
@@ -202,7 +205,7 @@ static void op_subi( mrbc_vm *vm, mrbc_value *regs )
     return;
   }
 
-  panic("SUBI FAILED");
+  panic("SUBI");
   //mrbc_raise(vm, MRBC_CLASS(TypeError), "no implicit conversion of Integer");
 }
 

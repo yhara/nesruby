@@ -8,8 +8,9 @@ static const char *builtin_symbols[] = {
   "hide_title",  // MRBC_SYMID_hide_title = 3(0x3)
   "pad_trigger",  // MRBC_SYMID_pad_trigger = 4(0x4)
   "play_sound",  // MRBC_SYMID_play_sound = 5(0x5)
-  "show_title",  // MRBC_SYMID_show_title = 6(0x6)
-  "wait_frame",  // MRBC_SYMID_wait_frame = 7(0x7)
+  "rand8",  // MRBC_SYMID_rand8 = 6(0x6)
+  "show_title",  // MRBC_SYMID_show_title = 7(0x7)
+  "wait_frame",  // MRBC_SYMID_wait_frame = 8(0x8)
 };
 enum {
   MRBC_SYMID_btn_a_pressed = 0,
@@ -18,9 +19,10 @@ enum {
   MRBC_SYMID_hide_title = 3,
   MRBC_SYMID_pad_trigger = 4,
   MRBC_SYMID_play_sound = 5,
-  MRBC_SYMID_show_title = 6,
-  MRBC_SYMID_wait_frame = 7,
+  MRBC_SYMID_rand8 = 6,
+  MRBC_SYMID_show_title = 7,
+  MRBC_SYMID_wait_frame = 8,
 };
 #define MRBC_SYM(sym) MRBC_SYMID_##sym
-#define OFFSET_BUILTIN_SYMBOL 8
+#define OFFSET_BUILTIN_SYMBOL 9
 #endif
