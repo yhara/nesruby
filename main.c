@@ -15,11 +15,9 @@ const unsigned char palSprites[16]={
   0x0f,0x19,0x29,0x39
 };
 
-// TODO: when this value is too big, mrbc_regs is silently broken
-#define MRBC_MEMORY_SIZE 824
 static uint8_t memory_pool[MRBC_MEMORY_SIZE];
 static mrbc_vm vm;
-static mrbc_value mrbc_regs[32];
+static mrbc_value mrbc_regs[MAX_REGS];
 void run_ruby()
 {
   uint8_t *p = (uint8_t *)mrb_data;

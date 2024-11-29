@@ -79,7 +79,14 @@ static void op_jmp( mrbc_vm *vm, mrbc_value *regs)
 
   vm->inst += (int16_t)a;
 }
+static void op_jmpif( mrbc_vm *vm, mrbc_value *regs)
+{
+  FETCH_BS();
 
+  if( regs[a].tt > MRBC_TT_FALSE ) {
+    vm->inst += (int16_t)b;
+  }
+}
 static void op_jmpnot( mrbc_vm *vm, mrbc_value *regs)
 {
   FETCH_BS();
@@ -93,6 +100,7 @@ const static char SPR_ARROW = 0;
 const static char SPR_RUBY = 4;
 static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
 {
+  int rd;
   mrbc_sym sym;
   FETCH_BBB();
 
@@ -119,12 +127,12 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
       oam_spr(regs[a+1].i,
               regs[a+2].i, 0x46, 2, SPR_RUBY);
       break;
-//    case MRBC_SYM(play_music):
-//      music_play(regs[a+1].i);
-//      break;
-//    case MRBC_SYM(stop_music):
-//      music_stop();
-//      break;
+    case MRBC_SYM(play_music):
+      music_play(regs[a+1].i);
+      break;
+    case MRBC_SYM(stop_music):
+      music_stop();
+      break;
     case MRBC_SYM(play_sound):
       sfx_play(regs[a+1].i, regs[a+2].i);
       break;
@@ -141,6 +149,9 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
     case MRBC_SYM(hide_title):
       put_str(NTADR_A(10, 10), "            ");
       put_str(NTADR_A(11, 12), "         ");
+      break;
+    case MRBC_SYM(dbg):
+      d_putd(regs[a+1].i); d_puts("");
       break;
     default:
       panic("UNKNOWN METHOD");
@@ -296,6 +307,7 @@ void mrbc_vm_run(struct VM *vm)
 {
   int i;
   uint8_t op;
+
   while (1) {
     mrbc_value *regs = vm->cur_regs;
     op = *vm->inst++;
@@ -325,7 +337,7 @@ void mrbc_vm_run(struct VM *vm)
       case OP_LOADF:      op_loadf      (vm, regs); break;
 
       case OP_JMP:        op_jmp        (vm, regs); break;
-
+      case OP_JMPIF:      op_jmpif      (vm, regs); break;
       case OP_JMPNOT:     op_jmpnot     (vm, regs); break;
 
       case OP_SSEND:      op_ssend      (vm, regs); break;
@@ -345,7 +357,8 @@ void mrbc_vm_run(struct VM *vm)
 
       case OP_STOP: op_stop(vm, regs); break;
       default:
-        panic("UNKNOWN OPCODE");
+        d_print("UNKNOWN OPCODE "); d_putd(op); d_puts("");
+        panic("");
         break;
     }
     if (op == OP_STOP) break;

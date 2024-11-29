@@ -2,4 +2,3 @@
 /bin/*.nes
 /bin/*.nes.map
 /obj
-/src/mrb_data.h
