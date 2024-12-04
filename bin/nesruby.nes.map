@@ -1,0 +1,587 @@
+Modules list:
+-------------
+main.o:
+    CODE              Offs=000000  Size=0000ED  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000065  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=00004C  Align=00001  Fill=0000
+vm.o:
+    CODE              Offs=0000ED  Size=0005F7  Align=00001  Fill=0000
+    RODATA            Offs=000065  Size=000026  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(_hextab.o):
+    RODATA            Offs=00008B  Size=000010  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(_longminstr.o):
+    RODATA            Offs=00009B  Size=00000C  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(_printf.o):
+    CODE              Offs=0006E4  Size=0003A5  Align=00001  Fill=0000
+    BSS               Offs=00004C  Size=00002B  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000003  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(add.o):
+    CODE              Offs=000A89  Size=00001C  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(addeqsp.o):
+    CODE              Offs=000AA5  Size=000011  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(addysp.o):
+    CODE              Offs=000AB6  Size=00000E  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(aslax2.o):
+    CODE              Offs=000AC4  Size=00000B  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(axlong.o):
+    CODE              Offs=000ACF  Size=00000D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(callmain.o):
+    CODE              Offs=000ADC  Size=000017  Align=00001  Fill=0000
+    DATA              Offs=000003  Size=000004  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(clrscr.o):
+    CODE              Offs=000AF3  Size=000049  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(condes.o):
+    CODE              Offs=000B3C  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000007  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(copydata.o):
+    CODE              Offs=000B48  Size=00002D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(cprintf.o):
+    CODE              Offs=000B75  Size=00002A  Align=00001  Fill=0000
+    BSS               Offs=000077  Size=000001  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(cputc.o):
+    CODE              Offs=000B9F  Size=000038  Align=00001  Fill=0000
+    ONCE              Offs=00000C  Size=000011  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(crt0.o):
+    HEADER            Offs=000000  Size=000010  Align=00001  Fill=0000
+    STARTUP           Offs=000000  Size=00005D  Align=00001  Fill=0000
+    VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ctype.o):
+    RODATA            Offs=0000A7  Size=00008B  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ctypemask.o):
+    CODE              Offs=000BD7  Size=00001E  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(decax6.o):
+    CODE              Offs=000BF5  Size=000007  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(decsp1.o):
+    CODE              Offs=000BFC  Size=000009  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(decsp2.o):
+    CODE              Offs=000C05  Size=00000D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(decsp4.o):
+    CODE              Offs=000C12  Size=00000D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(decsp6.o):
+    CODE              Offs=000C1F  Size=00000D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(gotoxy.o):
+    CODE              Offs=000C2C  Size=000010  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incax1.o):
+    CODE              Offs=000C3C  Size=000007  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incsp2.o):
+    CODE              Offs=000C43  Size=000016  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incsp4.o):
+    CODE              Offs=000C59  Size=000005  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incsp5.o):
+    CODE              Offs=000C5E  Size=000005  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incsp6.o):
+    CODE              Offs=000C63  Size=000005  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(incsp8.o):
+    CODE              Offs=000C68  Size=000005  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ldaui.o):
+    CODE              Offs=000C6D  Size=000009  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ldaxi.o):
+    CODE              Offs=000C76  Size=00000D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ldaxsp.o):
+    CODE              Offs=000C83  Size=000009  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(lneg.o):
+    CODE              Offs=000C8C  Size=00001E  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(lpush.o):
+    CODE              Offs=000CAA  Size=000021  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ltoa.o):
+    CODE              Offs=000CCB  Size=000095  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(makebool.o):
+    CODE              Offs=000D60  Size=00002C  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(neschar.o):
+    CHARS             Offs=000000  Size=001000  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(or.o):
+    CODE              Offs=000D8C  Size=000012  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(popa.o):
+    CODE              Offs=000D9E  Size=00000C  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(popptr1.o):
+    CODE              Offs=000DAA  Size=00000E  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ppu.o):
+    RODATA            Offs=000132  Size=000020  Align=00001  Fill=0000
+    ONCE              Offs=00001D  Size=00004D  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(ppubuf.o):
+    CODE              Offs=000DB8  Size=0000B0  Align=00001  Fill=0000
+    BSS               Offs=000078  Size=000001  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(push1.o):
+    CODE              Offs=000E68  Size=000005  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(pusha.o):
+    CODE              Offs=000E6D  Size=000016  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(pushax.o):
+    CODE              Offs=000E83  Size=00001A  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(setcursor.o):
+    CODE              Offs=000E9D  Size=000049  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(staspidx.o):
+    CODE              Offs=000EE6  Size=000016  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(staxsp.o):
+    CODE              Offs=000EFC  Size=00000B  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(staxspi.o):
+    CODE              Offs=000F07  Size=00001B  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(strlen.o):
+    CODE              Offs=000F22  Size=000016  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(strlower.o):
+    CODE              Offs=000F38  Size=000027  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(vcprintf.o):
+    CODE              Offs=000F5F  Size=00007A  Align=00001  Fill=0000
+    DATA              Offs=00002C  Size=000008  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(zerobss.o):
+    CODE              Offs=000FD9  Size=000023  Align=00001  Fill=0000
+/opt/homebrew/Cellar/cc65/2.19/share/cc65/lib/nes.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+CHARS                 000000  000FFF  001000  00001
+HEADER                000000  00000F  000010  00001
+ZEROPAGE              000002  00001B  00001A  00001
+DATA                  006000  006033  000034  00001
+BSS                   006034  0060AC  000079  00001
+STARTUP               008000  00805C  00005D  00001
+ONCE                  00805D  0080C8  00006C  00001
+CODE                  0080C9  0090C4  000FFC  00001
+RODATA                0090C5  009216  000152  00001
+VECTORS               00FFFA  00FFFF  000006  00001
+
+
+Exports list by name:
+---------------------
+NESfont                   000000 RLA    __BSS_RUN__               006034 RLA    
+__BSS_SIZE__              000079 REA    __CONSTRUCTOR_COUNT__     000001 REA    
+__CONSTRUCTOR_TABLE__     0080C7 RLA    __DATA_LOAD__             009217 RLA    
+__DATA_RUN__              006000 RLA    __DATA_SIZE__             000034 REA    
+__DESTRUCTOR_COUNT__      000000 REA    __DESTRUCTOR_TABLE__      009217 RLA    
+__SRAM_SIZE__             000300 REA    __SRAM_START__            000500 RLA    
+__STACKSIZE__             000300 REA    __STARTUP__               000001 REA    
+__ctype                   00916C RLA    __ctypeidx                009177 RLA    
+__hextab                  009150 RLA    __longminstr              009160 RLA    
+__printf                  0088A0 RLA    _clrscr                   008BBC RLA    
+_cprintf                  008C3E RLA    _cputc                    008C6D RLA    
+_gotoxy                   008CF8 RLA    _ltoa                     008DAC RLA    
+_main                     008194 RLA    _mrbc_vm_run              0081C4 RLA    
+_strlen                   008FEB RLA    _strlower                 009001 RLA    
+_ultoa                    008DED RLA    _vcprintf                 009072 RLA    
+addeqysp                  008B70 RLA    addysp                    008B80 RLA    
+addysp1                   008B7F RLA    aslax2                    008B8D RLA    
+axlong                    008B98 RLA    axulong                   008B9E RLA    
+booleq                    008E2F RLA    callmain                  008BA5 RLA    
+copydata                  008C11 RLA    ctypemaskdirect           008CA4 RLA    
+decax6                    008CBE RLA    decsp1                    008CC5 RLA    
+decsp2                    008CCE RLA    decsp4                    008CDB RLA    
+decsp6                    008CE8 RLA    donelib                   008C05 RLA    
+gotoxy                    008CF5 RLA    incax1                    008D05 RLA    
+incsp2                    008D14 RLA    incsp4                    008D22 RLA    
+incsp5                    008D27 RLA    incsp6                    008D2C RLA    
+incsp8                    008D31 RLA    initconio                 008069  LAI   
+initlib                   00805D RLA    ldauidx                   008D36 RLA    
+ldaxidx                   008D41 RLA    ldaxysp                   008D4E RLA    
+negeax                    008D55 RLA    paletteinit               0080AA RLA    
+popa                      008E67 RLA    popax                     008D0C RLA    
+popptr1                   008E73 RLA    ppubuf_flush              008EAD RLA    
+ppubuf_put                008E8D RLA    ppubuf_waitempty          008E81 RLA    
+ppuinit                   00807A RLA    ptr1                      00000A RLZ    
+ptr2                      00000C RLZ    ptr3                      00000E RLZ    
+push1                     008F31 RLA    pusha                     008F3A RLA    
+pusha0                    008F4E RLA    pushax                    008F50 RLA    
+pusheax                   008D7C RLA    regbank                   000016 RLZ    
+regsave                   000006 RLZ    setcursor                 008F66 RLA    
+sp                        000002 RLZ    sreg                      000004 RLZ    
+staspidx                  008FAF RLA    staxspidx                 008FD0 RLA    
+staxysp                   008FC7 RLA    tmp1                      000012 RLZ    
+tosaddax                  008B54 RLA    tosorax                   008E57 RLA    
+zerobss                   0090A2 RLA    
+
+
+Exports list by value:
+----------------------
+NESfont                   000000 RLA    __DESTRUCTOR_COUNT__      000000 REA    
+__STARTUP__               000001 REA    __CONSTRUCTOR_COUNT__     000001 REA    
+sp                        000002 RLZ    sreg                      000004 RLZ    
+regsave                   000006 RLZ    ptr1                      00000A RLZ    
+ptr2                      00000C RLZ    ptr3                      00000E RLZ    
+tmp1                      000012 RLZ    regbank                   000016 RLZ    
+__DATA_SIZE__             000034 REA    __BSS_SIZE__              000079 REA    
+__STACKSIZE__             000300 REA    __SRAM_SIZE__             000300 REA    
+__SRAM_START__            000500 RLA    __DATA_RUN__              006000 RLA    
+__BSS_RUN__               006034 RLA    initlib                   00805D RLA    
+initconio                 008069  LAI   ppuinit                   00807A RLA    
+paletteinit               0080AA RLA    __CONSTRUCTOR_TABLE__     0080C7 RLA    
+_main                     008194 RLA    _mrbc_vm_run              0081C4 RLA    
+__printf                  0088A0 RLA    tosaddax                  008B54 RLA    
+addeqysp                  008B70 RLA    addysp1                   008B7F RLA    
+addysp                    008B80 RLA    aslax2                    008B8D RLA    
+axlong                    008B98 RLA    axulong                   008B9E RLA    
+callmain                  008BA5 RLA    _clrscr                   008BBC RLA    
+donelib                   008C05 RLA    copydata                  008C11 RLA    
+_cprintf                  008C3E RLA    _cputc                    008C6D RLA    
+ctypemaskdirect           008CA4 RLA    decax6                    008CBE RLA    
+decsp1                    008CC5 RLA    decsp2                    008CCE RLA    
+decsp4                    008CDB RLA    decsp6                    008CE8 RLA    
+gotoxy                    008CF5 RLA    _gotoxy                   008CF8 RLA    
+incax1                    008D05 RLA    popax                     008D0C RLA    
+incsp2                    008D14 RLA    incsp4                    008D22 RLA    
+incsp5                    008D27 RLA    incsp6                    008D2C RLA    
+incsp8                    008D31 RLA    ldauidx                   008D36 RLA    
+ldaxidx                   008D41 RLA    ldaxysp                   008D4E RLA    
+negeax                    008D55 RLA    pusheax                   008D7C RLA    
+_ltoa                     008DAC RLA    _ultoa                    008DED RLA    
+booleq                    008E2F RLA    tosorax                   008E57 RLA    
+popa                      008E67 RLA    popptr1                   008E73 RLA    
+ppubuf_waitempty          008E81 RLA    ppubuf_put                008E8D RLA    
+ppubuf_flush              008EAD RLA    push1                     008F31 RLA    
+pusha                     008F3A RLA    pusha0                    008F4E RLA    
+pushax                    008F50 RLA    setcursor                 008F66 RLA    
+staspidx                  008FAF RLA    staxysp                   008FC7 RLA    
+staxspidx                 008FD0 RLA    _strlen                   008FEB RLA    
+_strlower                 009001 RLA    _vcprintf                 009072 RLA    
+zerobss                   0090A2 RLA    __hextab                  009150 RLA    
+__longminstr              009160 RLA    __ctype                   00916C RLA    
+__ctypeidx                009177 RLA    __DATA_LOAD__             009217 RLA    
+__DESTRUCTOR_TABLE__      009217 RLA    
+
+
+Imports list:
+-------------
+NESfont (neschar.o):
+    crt0.o                    nes/crt0.s(26)
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__DATA_LOAD__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_RUN__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_SIZE__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__SRAM_SIZE__ ([linker generated]):
+    crt0.o                    nes/crt0.s(17)
+__SRAM_START__ ([linker generated]):
+    crt0.o                    nes/crt0.s(17)
+__STACKSIZE__ ([linker generated]):
+    [linker generated]        nes.cfg(27)
+__STARTUP__ (crt0.o):
+    main.o                    src/main.s(13)
+__ctype (ctype.o):
+    ctypemask.o               common/ctypemask.s(23)
+__ctypeidx (ctype.o):
+    ctypemask.o               common/ctypemask.s(24)
+__hextab (_hextab.o):
+    ltoa.o                    common/ltoa.s(10)
+__longminstr (_longminstr.o):
+    ltoa.o                    common/ltoa.s(10)
+__printf (_printf.o):
+    vcprintf.o                conio/vcprintf.s(9)
+_clrscr (clrscr.o):
+    main.o                    src/main.s(14)
+_cprintf (cprintf.o):
+    vm.o                      src/vm.s(13)
+_cputc (cputc.o):
+    vcprintf.o                conio/vcprintf.s(9)
+_gotoxy (gotoxy.o):
+    main.o                    src/main.s(15)
+_ltoa (ltoa.o):
+    _printf.o                 common/_printf.s(12)
+_main (main.o):
+    callmain.o                runtime/callmain.s(11)
+_mrbc_vm_run (vm.o):
+    main.o                    src/main.s(17)
+_strlen (strlen.o):
+    _printf.o                 common/_printf.s(13)
+_strlower (strlower.o):
+    _printf.o                 common/_printf.s(13)
+_ultoa (ltoa.o):
+    _printf.o                 common/_printf.s(12)
+_vcprintf (vcprintf.o):
+    cprintf.o                 conio/cprintf.s(8)
+addeqysp (addeqsp.o):
+    main.o                    src/main.s(261)
+addysp (addysp.o):
+    incsp8.o                  runtime/incsp8.s(8)
+    incsp6.o                  runtime/incsp6.s(8)
+    incsp5.o                  runtime/incsp5.s(8)
+    incsp4.o                  runtime/incsp4.s(8)
+    cprintf.o                 conio/cprintf.s(8)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+addysp1 (addysp.o):
+    or.o                      runtime/or.s(9)
+aslax2 (aslax2.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+axlong (axlong.o):
+    _printf.o                 common/_printf.s(11)
+axulong (axlong.o):
+    _printf.o                 common/_printf.s(11)
+booleq (makebool.o):
+    vm.o                      src/vm.s(771)
+callmain (callmain.o):
+    crt0.o                    nes/crt0.s(11)
+copydata (copydata.o):
+    crt0.o                    nes/crt0.s(12)
+ctypemaskdirect (ctypemask.o):
+    strlower.o                common/strlower.s(14)
+decax6 (decax6.o):
+    vm.o                      src/vm.s(771)
+decsp1 (decsp1.o):
+    vm.o                      src/vm.s(771)
+decsp2 (decsp2.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+decsp4 (decsp4.o):
+    lpush.o                   runtime/lpush.s(12)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+decsp6 (decsp6.o):
+    _printf.o                 common/_printf.s(11)
+    vm.o                      src/vm.s(771)
+donelib (condes.o):
+    crt0.o                    nes/crt0.s(11)
+gotoxy (gotoxy.o):
+    cputc.o                   nes/cputc.s(12)
+incax1 (incax1.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+incsp2 (incsp2.o):
+    popptr1.o                 runtime/popptr1.s(8)
+    staxspi.o                 runtime/staxspi.s(9)
+    staspidx.o                runtime/staspidx.s(8)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+incsp4 (incsp4.o):
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+incsp5 (incsp5.o):
+    vm.o                      src/vm.s(771)
+incsp6 (incsp6.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+incsp8 (incsp8.o):
+    vm.o                      src/vm.s(771)
+initlib (condes.o):
+    crt0.o                    nes/crt0.s(11)
+ldauidx (ldaui.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+ldaxidx (ldaxi.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+ldaxysp (ldaxsp.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+    main.o                    src/main.s(261)
+negeax (lneg.o):
+    ltoa.o                    common/ltoa.s(9)
+paletteinit (ppu.o):
+    cputc.o                   nes/cputc.s(13)
+popa (popa.o):
+    gotoxy.o                  nes/gotoxy.s(9)
+popax (incsp2.o):
+    ltoa.o                    common/ltoa.s(9)
+    _printf.o                 common/_printf.s(11)
+    vcprintf.o                conio/vcprintf.s(8)
+popptr1 (popptr1.o):
+    ltoa.o                    common/ltoa.s(9)
+    vcprintf.o                conio/vcprintf.s(8)
+ppubuf_flush (ppubuf.o):
+    crt0.o                    nes/crt0.s(13)
+ppubuf_put (ppubuf.o):
+    cputc.o                   nes/cputc.s(13)
+ppubuf_waitempty (ppubuf.o):
+    clrscr.o                  nes/clrscr.s(9)
+ppuinit (ppu.o):
+    cputc.o                   nes/cputc.s(13)
+ptr1 (zeropage.o):
+    strlower.o                common/strlower.s(13)
+    popptr1.o                 runtime/popptr1.s(9)
+    ltoa.o                    common/ltoa.s(11)
+    copydata.o                common/copydata.s(9)
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(12)
+    zerobss.o                 common/zerobss.s(9)
+    vcprintf.o                conio/vcprintf.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    ldaxi.o                   runtime/ldaxi.s(8)
+    ldaui.o                   runtime/ldaui.s(8)
+    cprintf.o                 conio/cprintf.s(9)
+ptr2 (zeropage.o):
+    strlower.o                common/strlower.s(13)
+    strlen.o                  common/strlen.s(12)
+    ltoa.o                    common/ltoa.s(11)
+    copydata.o                common/copydata.s(9)
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(12)
+    vcprintf.o                conio/vcprintf.s(10)
+ptr3 (zeropage.o):
+    ltoa.o                    common/ltoa.s(11)
+    vcprintf.o                conio/vcprintf.s(10)
+push1 (push1.o):
+    _printf.o                 common/_printf.s(11)
+pusha (pusha.o):
+    main.o                    src/main.s(261)
+pusha0 (pushax.o):
+    push1.o                   runtime/push1.s(8)
+pushax (pushax.o):
+    callmain.o                runtime/callmain.s(11)
+    _printf.o                 common/_printf.s(11)
+    vcprintf.o                conio/vcprintf.s(8)
+    cprintf.o                 conio/cprintf.s(8)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+    main.o                    src/main.s(261)
+    main.o                    src/main.s(261)
+pusheax (lpush.o):
+    _printf.o                 common/_printf.s(11)
+regbank (zeropage.o):
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(14)
+regsave (zeropage.o):
+    vm.o                      src/vm.s(10)
+setcursor (setcursor.o):
+    cputc.o                   nes/cputc.s(14)
+    gotoxy.o                  nes/gotoxy.s(8)
+sp (zeropage.o):
+    popptr1.o                 runtime/popptr1.s(9)
+    lpush.o                   runtime/lpush.s(13)
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(11)
+    vcprintf.o                conio/vcprintf.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staxsp.o                  runtime/staxsp.s(8)
+    staspidx.o                runtime/staspidx.s(9)
+    pushax.o                  runtime/pushax.s(8)
+    pusha.o                   runtime/pusha.s(8)
+    popa.o                    runtime/popa.s(8)
+    or.o                      runtime/or.s(10)
+    ldaxsp.o                  runtime/ldaxsp.s(8)
+    incsp2.o                  runtime/incsp2.s(8)
+    decsp6.o                  runtime/decsp6.s(8)
+    decsp4.o                  runtime/decsp4.s(8)
+    decsp2.o                  runtime/decsp2.s(8)
+    decsp1.o                  runtime/decsp1.s(8)
+    crt0.o                    /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(11)
+    cprintf.o                 conio/cprintf.s(9)
+    addysp.o                  runtime/addysp.s(8)
+    addeqsp.o                 runtime/addeqsp.s(8)
+    add.o                     runtime/add.s(12)
+    vm.o                      src/vm.s(10)
+    main.o                    src/main.s(10)
+sreg (zeropage.o):
+    lneg.o                    runtime/lneg.s(11)
+    ltoa.o                    common/ltoa.s(11)
+    lpush.o                   runtime/lpush.s(13)
+    axlong.o                  runtime/axlong.s(9)
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(11)
+staspidx (staspidx.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+staxspidx (staxspi.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+staxysp (staxsp.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+    main.o                    src/main.s(261)
+tmp1 (zeropage.o):
+    ltoa.o                    common/ltoa.s(11)
+    copydata.o                common/copydata.s(9)
+    _printf.o                 /private/tmp/cc65-20221106-4106-t7shur/cc65-2.19/asminc/zeropage.inc(13)
+    vcprintf.o                conio/vcprintf.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    or.o                      runtime/or.s(10)
+    aslax2.o                  runtime/aslax2.s(8)
+    add.o                     runtime/add.s(12)
+tosaddax (add.o):
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+    vm.o                      src/vm.s(771)
+tosorax (or.o):
+    vm.o                      src/vm.s(771)
+    main.o                    src/main.s(261)
+zerobss (zerobss.o):
+    crt0.o                    nes/crt0.s(12)
+
