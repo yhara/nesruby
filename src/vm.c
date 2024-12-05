@@ -117,7 +117,9 @@ static void op_ssend( mrbc_vm *vm, mrbc_value *regs )
       ppu_wait_frame();
       break;
     case MRBC_SYM(rand8):
-      mrbc_set_integer(&regs[a], rand8());
+      rd = rand8();
+      //d_putd(rd); d_puts("");
+      mrbc_set_integer(&regs[a], rd);
       break;
     case MRBC_SYM(draw_arrow):
       oam_spr(regs[a+1].i,

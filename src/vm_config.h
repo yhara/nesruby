@@ -7,7 +7,7 @@
 #endif
 
 // TODO: when this value is too big, mrbc_regs is silently broken
-#define MRBC_MEMORY_SIZE 124
+#define MRBC_MEMORY_SIZE 724
 
 #define MAX_REGS 40
 

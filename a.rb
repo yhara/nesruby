@@ -24,6 +24,7 @@ while true
       rdy = 0
       rdx = 0
       cw = 30
+      caught = false
     end
   else
     x += dx
