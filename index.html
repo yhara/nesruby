@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>NESRUBY</title>
+    <script type="text/javascript" src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+    <script type="text/javascript" src="website/nes-embed.js"></script>
+    <script>
+      window.onload = function(){
+        nes_load_url("nes-canvas", "bin/nesruby.nes");
+        fetch("a.rb").then(function(response){
+          return response.text();
+        }).then(function(text){
+          document.getElementById("ruby-source").textContent = text;
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1><a href="https://github.com/yhara/nesruby">NESRUBY</a></h1>
+    </head>
+    <body>
+      <div style="margin: auto; width: 512px;">
+        <canvas id="nes-canvas" width="256" height="240" style="width: 100%"/>
+      </div>
+      <p>(PC only) Press 'A' key</p>
+      <p>Ruby source:</p>
+      <pre><code id="ruby-source"></code></pre>
+  </body>
+</html>
+
