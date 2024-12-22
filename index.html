@@ -5,12 +5,14 @@
     <script type="text/javascript" src="website/nes-embed.js"></script>
     <script>
       window.onload = function(){
-        nes_load_url("nes-canvas", "bin/nesruby.nes");
         fetch("a.rb").then(function(response){
           return response.text();
         }).then(function(text){
           document.getElementById("ruby-source").textContent = text;
         });
+      }
+      function nes_run() {
+        nes_load_url("nes-canvas", "bin/nesruby.nes");
       }
     </script>
   </head>
@@ -19,6 +21,7 @@
     </head>
     <body>
       <div style="margin: auto; width: 512px;">
+        <input type="button" value="Run" onclick="nes_run()"/>
         <canvas id="nes-canvas" width="256" height="240" style="width: 100%"/>
       </div>
       <p>(PC only) Press 'A' key</p>
