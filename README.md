@@ -2,10 +2,17 @@
 
 .mrb interpreter for NES
 
+## Example
+
+https://yhara.github.io/nesruby/
+
 ## Project status
 
-- Just started
-- Can load an integer (OP_LOADI) in .mrb and show it
+- [x] nil, true, false, Integer, Symbol 
+- [ ] String, Array, etc.
+- [ ] GC
+- Maybe
+    - Exception handling
 
 ## Prerequisites
 
@@ -16,15 +23,13 @@
 ## How to run
 
 1. `vi a.rb`
-2. `mrb a.rb` # generates a.mrb
-3. `ruby arraynize.rb a.rb`
-4. Copy and paste the output into src/main.c
-5. `make`
-6. Open bin/hello.nes with an NES emulator (or NES itself, of cource, if you can)
+1. `rake`
+1. Open bin/hello.nes with an NES emulator (or NES itself, of cource, if you can)
 
 ## Acknowledgements
 
-- `Makefile` and `nes.cfg` is taken from http://muto.world.coocan.jp/nesapp.html . Huge thanks
+- Huge thanks to http://shiru.untergrund.net/articles/programming_nes_games_in_c.htm
+  (via https://github.com/jmk/cc65-nes-examples/ )
 
 ## Lisence
 
