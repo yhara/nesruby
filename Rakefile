@@ -56,3 +56,15 @@ task :clean do
 end
 
 task default: "bin/nesruby.nes"
+
+#
+# No-NES test
+#
+task :nones do
+  cc = "clang-17"
+  deps = %w[symbol load vm libfunc debug value]
+  deps.each do |name|
+    sh "#{cc} -c src/#{name}.c -o obj/#{name}.o"
+  end
+  sh "#{cc} nones_test.c #{deps.map{ "obj/#{_1}.o" }.join(' ')}"
+end

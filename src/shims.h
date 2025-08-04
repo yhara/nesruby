@@ -1,15 +1,13 @@
 #ifndef MRBC_SRC_SHIMS_H_
 #define MRBC_SRC_SHIMS_H_
 
-//#define NULL 0
-
-typedef char int8_t;
-typedef unsigned char uint8_t;
-typedef int int16_t;
-typedef unsigned int uint16_t;
-//typedef struct {
-//    uint16_t low;
-//    uint16_t high;
-//} uint32_t;
+#ifdef __CC65__
+  typedef char int8_t;
+  typedef unsigned char uint8_t;
+  typedef int int16_t;
+  typedef unsigned int uint16_t;
+#else
+  #include <stdint.h>
+#endif
 
 #endif
