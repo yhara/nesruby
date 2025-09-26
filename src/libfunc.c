@@ -3,10 +3,10 @@
 #include "debug.h"
 
 #ifdef __CC65__
-#include "neslib.h"
-
-const static char SPR_ARROW = 0;
-const static char SPR_RUBY = 4;
+  #include "neslib.h"
+  const static char SPR_ARROW = 0;
+  const static char SPR_RUBY = 4;
+#endif
 
 void call_libfunc( mrbc_vm *vm, mrbc_value *regs)
 {
@@ -25,6 +25,7 @@ void call_libfunc( mrbc_vm *vm, mrbc_value *regs)
 
 
   switch (sym) {
+#ifdef __CC65__
     case MRBC_SYM(wait_frame):
       ppu_wait_frame();
       break;
@@ -64,6 +65,8 @@ void call_libfunc( mrbc_vm *vm, mrbc_value *regs)
       put_str(NTADR_A(10, 10), "            ");
       put_str(NTADR_A(11, 12), "         ");
       break;
+#endif
+
     case MRBC_SYM(dbg):
       d_putd(regs[a+1].i); d_puts("");
       break;
@@ -71,10 +74,3 @@ void call_libfunc( mrbc_vm *vm, mrbc_value *regs)
       panic("UNKNOWN METHOD");
   }
 }
-
-#else
-
-void call_libfunc( mrbc_vm *vm, mrbc_value *regs, mrbc_sym sym )
-{}
-
-#endif
