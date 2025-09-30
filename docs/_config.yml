@@ -1,0 +1,34 @@
+title: nesruby
+description: A Ruby interpreter for the Nintendo Entertainment System
+url: https://yhara.github.io/nesruby
+baseurl: /nesruby
+
+# GitHub repository
+repository: yhara/nesruby
+
+# Theme
+theme: minima
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation
+header_pages:
+  - index.md
+  - installation.md
+  - usage.md
+  - development.md
+
+# GitHub Pages safe plugins only
+safe: true

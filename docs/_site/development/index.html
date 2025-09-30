@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Development | nesruby</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Development" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Ruby interpreter for the Nintendo Entertainment System" />
+<meta property="og:description" content="A Ruby interpreter for the Nintendo Entertainment System" />
+<link rel="canonical" href="http://localhost:4000/nesruby/development/" />
+<meta property="og:url" content="http://localhost:4000/nesruby/development/" />
+<meta property="og:site_name" content="nesruby" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Development" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A Ruby interpreter for the Nintendo Entertainment System","headline":"Development","url":"http://localhost:4000/nesruby/development/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/nesruby/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/nesruby/feed.xml" title="nesruby" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/nesruby/">nesruby</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/nesruby/">nesruby</a><a class="page-link" href="/nesruby/installation/">Installation</a><a class="page-link" href="/nesruby/usage/">Usage</a><a class="page-link" href="/nesruby/development/">Development</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Development</h1>
+  </header>
+
+  <div class="post-content">
+    <h1 id="development-guide">Development Guide</h1>
+
+<h2 id="architecture-overview">Architecture Overview</h2>
+
+<p>nesruby is built as a custom virtual machine based on <a href="https://github.com/mrubyc/mrubyc">mruby/c</a>, optimized for NES hardware constraints.</p>
+
+<h3 id="core-components">Core Components</h3>
+
+<p><strong>Virtual Machine Core:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/vm.c</code>, <code class="language-plaintext highlighter-rouge">src/vm.h</code> - Main VM implementation</li>
+  <li><code class="language-plaintext highlighter-rouge">src/vm_config.h</code> - Memory and resource limits</li>
+  <li><code class="language-plaintext highlighter-rouge">src/load.c</code> - Bytecode loading and initialization</li>
+</ul>
+
+<p><strong>Value System:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/value.c</code>, <code class="language-plaintext highlighter-rouge">src/value.h</code> - Ruby value representation</li>
+  <li>Support for nil, boolean, integer, and symbol types</li>
+</ul>
+
+<p><strong>Runtime Support:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/symbol.c</code> - Symbol table management</li>
+  <li><code class="language-plaintext highlighter-rouge">src/libfunc.c</code> - Built-in Ruby method implementations</li>
+</ul>
+
+<p><strong>NES Integration:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/main.c</code> - NES-specific initialization and main loop</li>
+  <li>PPU, sprite, and palette setup</li>
+  <li>NROM mapper configuration (<code class="language-plaintext highlighter-rouge">nrom_256_horz.cfg</code>)</li>
+</ul>
+
+<h2 id="build-system">Build System</h2>
+
+<h3 id="rake-tasks">Rake Tasks</h3>
+
+<p>The project uses Rake with several important targets:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Main build tasks</span>
+<span class="n">rake</span> <span class="n">default</span>    <span class="c1"># Build bin/nesruby.nes</span>
+<span class="n">rake</span> <span class="ss">:nones_test</span> <span class="c1"># Run test suite</span>
+</code></pre></div></div>
+
+<h3 id="compilation-pipeline">Compilation Pipeline</h3>
+
+<ol>
+  <li><strong>Ruby → Bytecode:</strong> <code class="language-plaintext highlighter-rouge">mrbc</code> compiles <code class="language-plaintext highlighter-rouge">.rb</code> to <code class="language-plaintext highlighter-rouge">.mrb</code></li>
+  <li><strong>Bytecode → C Header:</strong> <code class="language-plaintext highlighter-rouge">arraynize.rb</code> converts <code class="language-plaintext highlighter-rouge">.mrb</code> to <code class="language-plaintext highlighter-rouge">src/mrb_data.h</code></li>
+  <li><strong>C → NES ROM:</strong> cc65 toolchain produces final <code class="language-plaintext highlighter-rouge">.nes</code> file</li>
+</ol>
+
+<h3 id="memory-configuration">Memory Configuration</h3>
+
+<p>Critical limits in <code class="language-plaintext highlighter-rouge">src/vm_config.h</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define MRBC_MEMORY_SIZE 724     // Total VM memory pool
+#define MAX_SYMBOLS_COUNT 40     // Maximum user symbols  
+#define MAX_REGS 40             // Maximum VM registers
+</span></code></pre></div></div>
+
+<p>You can edit them for your game script but if too big it will cause runtime memory corruption.</p>
+
+<h2 id="testing-framework">Testing Framework</h2>
+
+<h3 id="test-structure">Test Structure</h3>
+
+<p>Tests are located in <code class="language-plaintext highlighter-rouge">test/nones/</code> with this structure:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">*.rb</code> - Ruby source files</li>
+  <li><code class="language-plaintext highlighter-rouge">*.mrb</code> - Compiled bytecode (generated)</li>
+  <li><code class="language-plaintext highlighter-rouge">*.expected_out</code> - Expected program output</li>
+</ul>
+
+<h3 id="running-tests">Running Tests</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Run full test suite with AddressSanitizer</span>
+rake :nones_test
+
+<span class="c"># Run individual test</span>
+./nones_test <span class="nb">test</span>/nones/example.mrb
+</code></pre></div></div>
+
+<h3 id="adding-new-tests">Adding New Tests</h3>
+
+<ol>
+  <li>Create <code class="language-plaintext highlighter-rouge">test/nones/your_test.rb</code></li>
+  <li>Add expected output to <code class="language-plaintext highlighter-rouge">test/nones/your_test.expected_out</code></li>
+  <li>Run tests to verify</li>
+</ol>
+
+<h2 id="contributing">Contributing</h2>
+
+<h3 id="setting-up-development-environment">Setting Up Development Environment</h3>
+
+<ol>
+  <li><strong>Clone and build:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/yhara/nesruby.git
+<span class="nb">cd </span>nesruby
+rake
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Verify test environment:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rake :nones_test
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Install development tools:</strong>
+    <ul>
+      <li>NES emulator (Nestopia, FCEUX, etc.)</li>
+      <li>Debugger for cc65 (optional)</li>
+      <li>AddressSanitizer-capable compiler</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="development-workflow">Development Workflow</h3>
+
+<ol>
+  <li><strong>Make changes</strong> to VM, runtime, or build system</li>
+  <li><strong>Test locally</strong> with <code class="language-plaintext highlighter-rouge">rake :nones_test</code></li>
+  <li><strong>Build NES ROM</strong> with <code class="language-plaintext highlighter-rouge">rake</code></li>
+  <li><strong>Test on emulator</strong> to verify NES compatibility</li>
+  <li><strong>Submit pull request</strong> with test coverage</li>
+</ol>
+
+<h3 id="nes-specific-considerations">NES-Specific Considerations</h3>
+
+<p><strong>Hardware Constraints:</strong></p>
+<ul>
+  <li>2KB RAM total (shared with stack and variables)</li>
+  <li>6502 CPU with specific instruction timing</li>
+  <li>No floating-point hardware</li>
+  <li>Limited addressing modes</li>
+</ul>
+
+<p><strong>Development Tips:</strong></p>
+<ul>
+  <li>Test frequently on real hardware or accurate emulators</li>
+  <li>Profile for timing-sensitive operations</li>
+  <li>Consider battery-backed save data limitations</li>
+  <li>Account for different NES variants (NTSC/PAL)</li>
+</ul>
+
+<h2 id="debugging">Debugging</h2>
+
+<h3 id="vm-debugging">VM Debugging</h3>
+
+<p><strong>AddressSanitizer (nones_test):</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Compile with debugging symbols</span>
+<span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-g -O0"</span> rake :nones_test
+
+<span class="c"># Run with verbose output</span>
+./nones_test <span class="nt">-v</span> <span class="nb">test</span>/nones/your_test.mrb
+</code></pre></div></div>
+
+<p><strong>NES Debugging:</strong></p>
+<ul>
+  <li>Use emulator debuggers (FCEUX, Mesen)</li>
+  <li>Add debug output via NES graphics</li>
+</ul>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://github.com/mrubyc/mrubyc">mruby/c Documentation</a></li>
+  <li><a href="https://cc65.github.io/">cc65 Documentation</a></li>
+  <li><a href="https://www.nesdev.org/">NES Development Wiki</a></li>
+  <li><a href="http://www.6502.org/">6502 Assembly Reference</a></li>
+</ul>
+
+<p>For questions, bug reports, or contributions, please use the <a href="https://github.com/yhara/nesruby/issues">GitHub Issues</a> page.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/nesruby/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">nesruby</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">nesruby</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A Ruby interpreter for the Nintendo Entertainment System</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
