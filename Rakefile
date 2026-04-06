@@ -1,3 +1,4 @@
+NAME = "game"
 MRBC = if RUBY_PLATFORM =~ /darwin/
          # mruby 3.3.0 is broken on intel mac
          "~/research/mruby/bin/mrbc"
@@ -14,12 +15,12 @@ CFLAGS = "-t nes -I./include -Oi --add-source"
 LDFLAGS = "-C #{CFG}"
 
 MRB_DATA = "src/mrb_data.h"
-file "a.mrb" => "a.rb" do |t|
+file "#{NAME}.mrb" => "#{NAME}.rb" do |t|
   sh "#{MRBC} -v -o #{t.name} #{t.source}"
   sh "#{MRUBY_STRIP} -l #{t.name}"
 end
-file MRB_DATA => ["a.mrb", "arraynize.rb"] do |t|
-  sh "ruby arraynize.rb #{t.source} a.rb > #{t.name}"
+file MRB_DATA => ["#{NAME}.mrb", "arraynize.rb"] do |t|
+  sh "ruby arraynize.rb #{t.source} #{NAME}.rb > #{t.name}"
 end
 
 BUILTIN_SYMBOLS = "src/_autogen_builtin_symbol.h"
@@ -51,7 +52,7 @@ end
 
 task :clean do
   rm Dir["obj/*.[os]"]
-  rm "a.mrb"
+  rm "#{NAME}.mrb"
   rm MRB_DATA
 end
 
