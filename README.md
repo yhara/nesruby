@@ -22,14 +22,15 @@ https://yhara.github.io/nesruby/
 
 ## How to run
 
-1. `vi a.rb`
+1. `vi game.rb`
 1. `rake`
 1. Open bin/hello.nes with an NES emulator (or NES itself, of cource, if you can)
 
 ## Acknowledgements
 
-- Huge thanks to http://shiru.untergrund.net/articles/programming_nes_games_in_c.htm
+Huge thanks to http://shiru.untergrund.net/articles/programming_nes_games_in_c.htm
   (via https://github.com/jmk/cc65-nes-examples/ )
+and mruby/c
 
 ## Lisence
 
