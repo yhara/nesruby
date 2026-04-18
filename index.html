@@ -5,7 +5,7 @@
     <script type="text/javascript" src="website/nes-embed.js"></script>
     <script>
       window.onload = function(){
-        fetch("a.rb").then(function(response){
+        fetch("game.rb").then(function(response){
           return response.text();
         }).then(function(text){
           document.getElementById("ruby-source").textContent = text;
