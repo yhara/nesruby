@@ -28,7 +28,7 @@ file BUILTIN_SYMBOLS => "gen_builtin_symbols.rb" do |t|
   sh "ruby gen_builtin_symbols.rb > #{t.name}"
 end
 
-file "obj/crt0.o" => "crt0.s" do |t|
+file "obj/crt0.o" => ["crt0.s", "music.s", "sounds.s", "tileset.chr", "neslib.s"] do |t|
   sh "#{ASSEMBLER} #{ASFLAGS} -o #{t.name} #{t.source}"
 end
 
